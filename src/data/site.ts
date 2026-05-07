@@ -1,6 +1,4 @@
-import fs from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import tracker from "./profile_tracker.json";
 
 type TrackerRow = Record<string, string>;
 
@@ -57,12 +55,8 @@ type Publication = {
   nameVariantNote: string;
 };
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const trackerPath = path.resolve(__dirname, "../../../profile_tracker/profile_tracker.json");
-const tracker = JSON.parse(fs.readFileSync(trackerPath, "utf8")) as TrackerFile;
-
-const tables = tracker.tables;
+const trackerData = tracker as TrackerFile;
+const tables = trackerData.tables;
 const ALISON_ID = "person_alison_seongjee_park";
 const CONTACT = {
   email: "alisonsjpark@gmail.com",
@@ -825,7 +819,7 @@ export const siteMeta = {
   email: CONTACT.email,
   phone: CONTACT.phone,
   downloads: DOWNLOADS,
-  generatedOn: tracker.summary.generated_on,
+  generatedOn: trackerData.summary.generated_on,
   links: {
     linkedin: digitalProfiles.get("LinkedIn")?.url || CONTACT.linkedin,
     github: digitalProfiles.get("GitHub")?.url || CONTACT.github,
@@ -839,9 +833,9 @@ export const siteMeta = {
 };
 
 export const stats = {
-  outputsTotal: tracker.summary.high_level_counts.outputs_total,
-  timelineEvents: tracker.summary.high_level_counts.timeline_events,
-  projectsTotal: tracker.summary.high_level_counts.projects
+  outputsTotal: trackerData.summary.high_level_counts.outputs_total,
+  timelineEvents: trackerData.summary.high_level_counts.timeline_events,
+  projectsTotal: trackerData.summary.high_level_counts.projects
 };
 
 export const homepageData = {
