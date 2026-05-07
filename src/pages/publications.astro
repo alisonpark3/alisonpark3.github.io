@@ -1,0 +1,148 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import PublicationCard from "../components/PublicationCard.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import { publications, siteMeta, stats } from "../data/site";
+
+const filters = ["All", "Journal article", "ASH", "IMS", "Awarded", "Single-Cell", "Multi-Omics", "Drug Discovery"];
+const evidenceGallery = [
+  {
+    title: "2025 CLML / IMS abstract",
+    note: "Abstract-page excerpt used as source evidence for the multi-omics subtype story.",
+    src: "/images/papers/out_2025_clml_multiomic_snf/abstract-excerpt.png",
+    alt: "Excerpt from the 2025 CLML / IMS abstract page."
+  },
+  {
+    title: "2024 Blood award abstracts",
+    note: "Paired excerpts from the two 2024 ASH award-marked abstracts on immune profiling and single-cell analysis.",
+    src: "/images/papers/story-immune/source-collage.png",
+    alt: "Paired source excerpts from the two 2024 Blood award abstracts."
+  },
+  {
+    title: "2025 Blood shared-immune abstract",
+    note: "Abstract-page excerpt from the shared immune-features study across human subtypes and murine models.",
+    src: "/images/papers/out_2025_blood_shared_immune_features/abstract-excerpt.png",
+    alt: "Excerpt from the 2025 Blood abstract on shared immune features."
+  },
+  {
+    title: "2026 JMC SETD8 paper",
+    note: "Real figure crop from the published paper, used where the source includes full figure-level evidence.",
+    src: "/images/papers/out_2026_jmc_setd8_inhibitor/figure-invivo.png",
+    alt: "Figure excerpt from the 2026 Journal of Medicinal Chemistry SETD8 paper."
+  }
+];
+---
+
+<MainLayout title={`${siteMeta.title} | Publications`} description="Publications and conference abstracts for Alison Seongjee Park.">
+  <section class="subpage-hero">
+    <div class="content-grid narrow-grid">
+      <p class="hero-kicker">Research record</p>
+      <h1>Publications and conference abstracts</h1>
+      <p class="hero-body">
+        Alison&apos;s public research record currently spans <strong>{stats.outputsTotal} verified outputs</strong>: one published medicinal-chemistry article
+        and seven conference abstracts across multiple myeloma, immune profiling, and translational target discovery.
+      </p>
+      <div class="subpage-meta">
+        <span class="pill">1 journal article</span>
+        <span class="pill">7 conference abstracts</span>
+        <span class="pill">2 award-marked ASH abstracts</span>
+        <span class="pill">Official links on every card</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Reading the record"
+        title="What this page shows"
+        body="The chronology matters. Early ASH abstracts come from epigenetics and drug-response work, the 2024 and 2025 abstracts show Alison's second- and third-author computational myeloma work, and the 2026 SETD8 paper closes the loop back to translational target discovery."
+      />
+
+      <div class="split-grid">
+        <article class="split-card">
+          <h3>Name continuity</h3>
+          <p>
+            Earlier Blood records list the name variant <strong>Seongjee Park</strong> or <strong>S Park</strong>. Newer records appear as Alison S Park or
+            Alison Park. The authorship record here keeps those entries together as one continuous publication history.
+          </p>
+        </article>
+        <article class="split-card">
+          <h3>Proof and context</h3>
+          <p>
+            Each card includes the official publication or abstract link, conference context when available, authorship position, and an authors list with public
+            collaborator links where they could be verified.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell accent-shell">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Source excerpts"
+        title="Real source material from the local PDFs"
+        body="Not every record here is a full paper. The Blood and CLML entries are abstract-page PDFs, so they are shown as source excerpts. The JMC article is the one figure-rich paper in the set, so it contributes full figure crops."
+      />
+      <div class="evidence-grid">
+        {evidenceGallery.map((item) => (
+          <article class="evidence-card">
+            <figure class="story-evidence-figure">
+              <img src={item.src} alt={item.alt} loading="lazy" />
+              <figcaption>{item.note}</figcaption>
+            </figure>
+            <div class="evidence-card-copy">
+              <p class="meta-kicker">{item.title}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div class="contact-strip">
+        <a href={siteMeta.downloads.resumePdf} download>Download Resume (PDF)</a>
+        <a href={siteMeta.downloads.cvPdf} download>Full CV (PDF)</a>
+        <a href={`mailto:${siteMeta.email}`}>Email Alison</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="content-grid">
+      <div class="filter-bar" data-filter-root>
+        {filters.map((filter, index) => (
+          <button class:list={["filter-chip", index === 0 && "is-active"]} type="button" data-filter={filter}>
+            {filter}
+          </button>
+        ))}
+      </div>
+
+      <div class="card-grid" data-publication-grid>
+        {publications.map((publication) => <PublicationCard publication={publication} />)}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const root = document.querySelector("[data-filter-root]");
+    const cards = Array.from(document.querySelectorAll("[data-publication-grid] .publication-card"));
+
+    if (root && cards.length) {
+      root.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLButtonElement)) return;
+
+        const filter = target.dataset.filter;
+        if (!filter) return;
+
+        root.querySelectorAll(".filter-chip").forEach((chip) => chip.classList.remove("is-active"));
+        target.classList.add("is-active");
+
+        cards.forEach((card) => {
+          const tags = (card.getAttribute("data-tags") || "").split("|").filter(Boolean);
+          const show = filter === "All" || tags.includes(filter);
+          card.toggleAttribute("hidden", !show);
+        });
+      });
+    }
+  </script>
+</MainLayout>

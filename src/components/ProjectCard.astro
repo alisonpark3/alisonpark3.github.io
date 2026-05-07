@@ -1,0 +1,41 @@
+---
+type Project = {
+  title: string;
+  href: string;
+  language: string;
+  createdDate: string;
+  summary: string;
+  framing: string;
+  whatItShows: string;
+  metrics: string;
+  originality: string;
+  featuredOnLinkedIn: boolean;
+};
+
+const { project } = Astro.props as { project: Project };
+---
+
+<article class="project-card">
+  <div class="publication-meta-row">
+    <span class="pill">{project.originality}</span>
+    <span class="meta-kicker">{project.createdDate}</span>
+  </div>
+  <h3>{project.title}</h3>
+  <p class="card-body">{project.summary}</p>
+  <p class="project-what-it-shows">{project.whatItShows}</p>
+  <p class="project-framing">{project.framing}</p>
+  <dl class="meta-grid">
+    <div>
+      <dt>Primary format</dt>
+      <dd>{project.language}</dd>
+    </div>
+    <div>
+      <dt>LinkedIn feature</dt>
+      <dd>{project.featuredOnLinkedIn ? "Featured publicly" : "GitHub-only public repo"}</dd>
+    </div>
+  </dl>
+  {project.metrics && <p class="project-metrics">{project.metrics}</p>}
+  <div class="card-links">
+    <a href={project.href} target="_blank" rel="noreferrer">Open repository</a>
+  </div>
+</article>

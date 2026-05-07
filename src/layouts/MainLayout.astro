@@ -1,0 +1,73 @@
+---
+import "../styles/global.css";
+import { siteMeta } from "../data/site";
+
+type Props = {
+  title: string;
+  description?: string;
+};
+
+const { title, description = "Editorial portfolio for Alison Seongjee Park." } = Astro.props;
+const pathname = Astro.url.pathname;
+const nav = [
+  { href: "/", label: "Overview" },
+  { href: "/#research", label: "Research" },
+  { href: "/publications", label: "Publications" },
+  { href: "/projects", label: "Projects" },
+  { href: "/resume", label: "Resume" },
+  { href: "/#contact", label: "Contact" }
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <div class="header-inner">
+          <a class="brand-mark" href="/">
+            <span class="brand-dot"></span>
+            <span class="brand-text">Alison Park</span>
+          </a>
+          <nav class="site-nav" aria-label="Primary">
+            {
+              nav.map((item) => (
+                <a class:list={["nav-link", item.href === pathname && "is-active"]} href={item.href}>
+                  {item.label}
+                </a>
+              ))
+            }
+          </nav>
+        </div>
+      </header>
+      <main>
+        <slot />
+      </main>
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div>
+            <p class="footer-title">{siteMeta.title}</p>
+            <p class="footer-copy">
+              Computational oncology, machine learning, multi-omics integration, and single-cell analysis.
+            </p>
+          </div>
+          <div class="footer-links">
+            <a href={`mailto:${siteMeta.email}`}>Email</a>
+            <a href={`tel:${siteMeta.phone.replace(/[^0-9+]/g, "")}`}>Phone</a>
+            <a href={siteMeta.downloads.resumePdf} download>Resume (PDF)</a>
+            <a href={siteMeta.downloads.cvPdf} download>Full CV</a>
+            <a href={siteMeta.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href={siteMeta.links.github} target="_blank" rel="noreferrer">GitHub</a>
+            <a href={siteMeta.links.scholar} target="_blank" rel="noreferrer">Scholar</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

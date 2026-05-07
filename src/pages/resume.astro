@@ -1,0 +1,177 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import { resumePageData, siteMeta } from "../data/site";
+---
+
+<MainLayout title={`${siteMeta.title} | Resume`} description="Recruiter-friendly resume page for Alison Seongjee Park.">
+  <section class="subpage-hero">
+    <div class="content-grid resume-hero-grid">
+      <div class="resume-hero-copy">
+        <p class="hero-kicker">Recruiter resume</p>
+        <h1>Resume</h1>
+        <p class="hero-body resume-summary">{resumePageData.summary}</p>
+        <div class="subpage-meta">
+          <span class="pill">Machine learning</span>
+          <span class="pill">Bioinformatics</span>
+          <span class="pill">Multiple myeloma</span>
+          <span class="pill">Single-cell genomics</span>
+        </div>
+        <div class="hero-actions">
+          <a class="button button-primary" href={resumePageData.downloads.resumePdf} download>Download Resume (PDF)</a>
+          <a class="button button-secondary" href={resumePageData.downloads.cvPdf} download>Full CV (PDF)</a>
+          <a class="button button-tertiary" href={resumePageData.downloads.cvDocx} download>Full CV (DOCX)</a>
+          <a class="button button-tertiary" href={`mailto:${siteMeta.email}`}>Email Alison</a>
+        </div>
+      </div>
+
+      <div class="resume-rail">
+        <aside class="resume-panel">
+          <p class="meta-kicker">Direct contact</p>
+          <ul class="resume-contact-list">
+            <li><span>Location</span><strong>{siteMeta.location}</strong></li>
+            <li><span>Email</span><a href={`mailto:${siteMeta.email}`}>{siteMeta.email}</a></li>
+            <li><span>Phone</span><a href={`tel:${siteMeta.phone.replace(/[^0-9+]/g, "")}`}>{siteMeta.phone}</a></li>
+            <li><span>LinkedIn</span><a href={siteMeta.links.linkedin} target="_blank" rel="noreferrer">alison-s-park</a></li>
+          </ul>
+        </aside>
+
+        <aside class="resume-panel">
+          <p class="meta-kicker">At a glance</p>
+          <div class="resume-download-stack">
+            <div class="resume-download-link">
+              <strong>{siteMeta.currentRole}</strong>
+              <span>Current role and research setting</span>
+            </div>
+            <div class="resume-download-link">
+              <strong>8 verified public outputs</strong>
+              <span>1 journal article and 7 conference abstracts</span>
+            </div>
+            <div class="resume-download-link">
+              <strong>2 award-marked ASH abstracts</strong>
+              <span>Documented in the 2024 CV</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Education"
+        title="Education"
+        body="Biomedical sciences, medical training, and later formal training in data science."
+      />
+
+      <div class="resume-card-grid resume-card-grid-3">
+        {resumePageData.education.map((item) => (
+          <article class="resume-card">
+            <p class="meta-kicker">{item.dates}</p>
+            <h3>{item.title}</h3>
+            <p class="resume-card-emphasis">{item.credential}</p>
+            <p>{item.note}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell accent-shell">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Selected experience"
+        title="Selected experience"
+        body="Current computational oncology work, earlier translational research, and the core experience most relevant to hiring."
+      />
+
+      <div class="resume-experience-stack">
+        {resumePageData.experience.map((item) => (
+          <article class="resume-card resume-experience-card">
+            <div class="resume-experience-head">
+              <div>
+                <p class="meta-kicker">{item.dates}</p>
+                <h3>{item.title}</h3>
+                <p class="resume-card-emphasis">{item.organization}</p>
+              </div>
+              <p class="resume-experience-team">{item.scope}</p>
+            </div>
+            <ul class="calm-list">
+              {item.bullets.map((bullet) => <li>{bullet}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Technical strengths"
+        title="Technical skills"
+        body="A recruiter-friendly cut of the technical profile."
+      />
+
+      <div class="resume-card-grid resume-strength-grid">
+        {resumePageData.skills.map((group) => (
+          <article class="resume-card">
+            <h3>{group.title}</h3>
+            <ul class="calm-list">
+              {group.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell accent-shell">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Publication snapshot"
+        title="Selected publications"
+        body="The full authorship and evidence detail lives on the publications page."
+      />
+
+      <div class="resume-publication-grid">
+        {resumePageData.publicationsSnapshot.map((publication) => (
+          <article class="resume-card resume-publication-card">
+            <div class="publication-pill-row">
+              <span class="pill">{publication.type}</span>
+              {publication.awardLabel && <span class="pill pill-highlight">{publication.awardLabel}</span>}
+            </div>
+            <h3>{publication.title}</h3>
+            <p class="publication-citation">{publication.citation}</p>
+            <p class="card-body">{publication.metricSummary}</p>
+            <div class="card-links">
+              <a href={publication.officialUrl} target="_blank" rel="noreferrer">Official record</a>
+              {publication.doiUrl && <a href={publication.doiUrl} target="_blank" rel="noreferrer">DOI</a>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="content-grid">
+      <div class="resume-cta">
+        <div>
+          <p class="section-eyebrow">Next step</p>
+          <h2>Download the resume or get in touch</h2>
+          <p class="section-body">
+            For research roles, computational biology openings, or industry ML roles connected to healthcare and precision medicine, email is the fastest path.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <a class="button button-primary" href={`mailto:${siteMeta.email}`}>Email Alison</a>
+          <a class="button button-secondary" href={resumePageData.downloads.resumePdf} download>Download Resume (PDF)</a>
+          <a class="button button-tertiary" href={resumePageData.downloads.cvPdf} download>Full CV (PDF)</a>
+          <a class="button button-tertiary" href={siteMeta.links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

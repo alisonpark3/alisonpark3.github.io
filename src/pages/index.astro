@@ -1,0 +1,475 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import PublicationCard from "../components/PublicationCard.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SocialIcon from "../components/SocialIcon.astro";
+import { homepageData, siteMeta } from "../data/site";
+
+const socialLinks = [
+  { label: "LinkedIn", href: siteMeta.links.linkedin, icon: "linkedin" as const },
+  { label: "GitHub", href: siteMeta.links.github, icon: "github" as const },
+  { label: "Google Scholar", href: siteMeta.links.scholar, icon: "scholar" as const }
+];
+
+const storyVisuals = {
+  "story-setd8": {
+    kind: "figure",
+    src: "/images/papers/out_2026_jmc_setd8_inhibitor/figure-invivo-tight.png",
+    alt: "In vivo figure crop from the 2026 Journal of Medicinal Chemistry SETD8 paper.",
+    caption: "Real figure crop from the 2026 Journal of Medicinal Chemistry paper."
+  },
+  "story-subtypes": {
+    kind: "study-map",
+    title: "Study structure",
+    rows: [
+      { label: "Inputs", value: "WES + RNA-seq + CyTOF" },
+      { label: "Cohort", value: "389 newly diagnosed patients" },
+      { label: "Modeling output", value: "6 integrated clusters" },
+      { label: "Clinical signal", value: "Hazard ratio 4.46" }
+    ],
+    caption: "Structured from the abstract metrics and methods rather than a full-paper figure."
+  },
+  "story-shared-immune": {
+    kind: "study-map",
+    title: "Cross-model evidence",
+    rows: [
+      { label: "Patients", value: "159 NDMM cases" },
+      { label: "Cells", value: "435,000 profiled cells" },
+      { label: "Clone signal", value: "Median 8 clones per patient" },
+      { label: "Outcome signal", value: "Hazard ratio 2.3 for death" }
+    ],
+    caption: "Built from the official abstract record because the source PDF is abstract-only."
+  },
+  "story-immune": {
+    kind: "study-map",
+    title: "Single-cell readout",
+    rows: [
+      { label: "Discovery cohort", value: "72 patients" },
+      { label: "Cell count", value: "567,340 cells" },
+      { label: "Companion study", value: "185 samples, 776,859 cells" },
+      { label: "Core finding", value: "APC and IFN-stimulated CD4 depletion" }
+    ],
+    caption: "Structured from the two award-marked 2024 Blood abstracts."
+  }
+} as const;
+
+function outputLinkLabel(link: { year: string; type: string; venue: string; conferenceName: string }) {
+  if (link.type === "Journal article") return `${link.year} paper`;
+  if (link.conferenceName) return `${link.year} ${link.conferenceName}`;
+  return `${link.year} abstract`;
+}
+---
+
+<MainLayout title={`${siteMeta.title} | Portfolio`} description="Machine learning, generative AI, and computational-oncology portfolio for Alison Seongjee Park.">
+  <section class="hero-section">
+    <div class="hero-backdrop"></div>
+    <div class="content-grid hero-grid">
+      <div class="hero-copy reveal rise-delay-1">
+        <p class="hero-kicker">{siteMeta.lead}</p>
+        <h1 class="hero-title">{siteMeta.title}</h1>
+        <p class="hero-headline">{siteMeta.headline}</p>
+        <p class="hero-subhead">{siteMeta.subhead}</p>
+        <p class="hero-body">{siteMeta.heroSummary}</p>
+        <p class="hero-role-line">{siteMeta.roleTargetLine}</p>
+
+        <div class="hero-quick-facts">
+          <div class="hero-fact">
+            <span>Current role</span>
+            <strong>{siteMeta.currentRole}</strong>
+          </div>
+          <div class="hero-fact">
+            <span>Current work</span>
+            <strong>Multiple myeloma, multi-omics, single-cell analysis, and machine-learning workflows</strong>
+          </div>
+          <div class="hero-fact">
+            <span>Current focus</span>
+            <strong>Clinically grounded modeling, translational oncology, and emerging LLM-assisted biomedical analysis</strong>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href={`mailto:${siteMeta.email}`}>Email Alison</a>
+          <a class="button button-secondary" href={siteMeta.downloads.resumePdf} download>Download Resume</a>
+          <a class="button button-tertiary" href="/publications">Publications</a>
+          <a class="button button-tertiary" href="/resume">Resume page</a>
+        </div>
+
+        <div class="hero-contact-line">
+          <a href={`tel:${siteMeta.phone.replace(/[^0-9+]/g, "")}`}>{siteMeta.phone}</a>
+          <span>•</span>
+          {socialLinks.map((item) => (
+            <a class="social-link" href={item.href} target="_blank" rel="noreferrer">
+              <SocialIcon name={item.icon} />
+              <span>{item.label}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="hero-portrait reveal rise-delay-2">
+        <div class="portrait-frame portrait-frame-tall">
+          <img src={siteMeta.headshot} alt="Portrait of Alison Seongjee Park" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof-section">
+    <div class="content-grid">
+      <div class="section-heading proof-heading">
+        <p class="section-eyebrow">Overview context</p>
+        <h2>What the record actually covers</h2>
+        <p class="section-body">
+          The numbers below matter only if they are readable in context: research scale, publication record, recognition, and the bridge from cancer biology to
+          computational and AI-oriented biomedical analysis.
+        </p>
+      </div>
+
+      <div class="proof-grid proof-grid-context">
+        {
+          homepageData.proofStrip.map((item, index) => (
+            <article class="proof-card reveal" style={`--stagger: ${index * 80}ms`}>
+              <p class="proof-label">{item.label}</p>
+              <p class="proof-value">{item.value}</p>
+              <p class="proof-note">{item.note}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Research focus"
+        title="From cancer biology to computational oncology, machine learning, and LLM-assisted analysis"
+        body="The profile is strongest when the science question is real, the dataset is messy, and the analysis needs to stay interpretable to clinicians and cancer researchers. The map below shows how each vertical ties back to specific outputs, methods, and public evidence."
+      />
+
+      <div class="split-grid">
+        {homepageData.rolePanels.map((item) => (
+          <article class="split-card">
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="focus-map-shell" data-focus-root>
+        <div class="focus-map-nav">
+          {homepageData.focusMap.map((item, index) => (
+            <button class:list={["focus-node", index === 0 && "is-active"]} type="button" data-focus-target={item.id}>
+              <span class="focus-node-dot"></span>
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </div>
+
+        <div class="focus-map-panels">
+          {homepageData.focusMap.map((item, index) => (
+            <article class="focus-map-panel" data-focus-panel={item.id} hidden={index !== 0}>
+              <div class="focus-map-copy">
+                <p class="meta-kicker">Focus vertical</p>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <div class="focus-map-evidence">
+                  <span>Backed by</span>
+                  <strong>{item.evidence}</strong>
+                </div>
+                <div class="tag-row">
+                  {item.skills.map((skill) => <span class="tag">{skill}</span>)}
+                </div>
+              </div>
+              <div class="focus-map-links">
+                <p class="publication-label">Related evidence</p>
+                <div class="focus-link-list">
+                  {item.links.map((link) => (
+                    <a href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel={link.href.startsWith("http") ? "noreferrer" : undefined}>
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell" id="research">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Selected work"
+        title="Case studies, publication record, and code"
+        body="This layer is split deliberately. Case studies explain why the work matters. Publications show the formal record. Code shows the visible implementation layer."
+      />
+
+      <div class="work-tabs" data-work-tabs-root>
+        <div class="filter-bar">
+          <button class="filter-chip is-active" type="button" data-work-tab="highlights">Research highlights</button>
+          <button class="filter-chip" type="button" data-work-tab="publications">Selected publications</button>
+          <button class="filter-chip" type="button" data-work-tab="projects">Machine-learning projects</button>
+        </div>
+
+        <div class="work-panels">
+          <div class="work-panel" data-work-panel="highlights">
+            <div class="story-stack">
+              {
+                homepageData.researchStories.map((story) => {
+                  const visual = storyVisuals[story.id as keyof typeof storyVisuals];
+                  return (
+                    <article class="story-card">
+                      <div class="story-copy">
+                        <div class="story-meta-top">
+                          <p class="section-eyebrow">{story.yearLabel}</p>
+                          <span class="pill">Case study</span>
+                        </div>
+                        <h3>{story.title}</h3>
+                        <p class="story-summary">{story.summary}</p>
+
+                        <div class="story-block">
+                          <h4>Contribution</h4>
+                          <p>{story.contribution}</p>
+                        </div>
+
+                        <div class="story-block">
+                          <h4>Methods</h4>
+                          <div class="tag-row">
+                            {story.methods.map((method) => <span class="tag">{method}</span>)}
+                          </div>
+                        </div>
+
+                        <div class="story-results">
+                          {story.results.map((result) => <p>{result}</p>)}
+                        </div>
+
+                        <div class="story-metrics">
+                          {story.metrics.map((metric) => (
+                            <div class="story-metric">
+                              <span>{metric.label}</span>
+                              <strong>{metric.value}</strong>
+                            </div>
+                          ))}
+                        </div>
+
+                        <div class="story-links-block">
+                          <p class="publication-label">Source links</p>
+                          <div class="card-links">
+                            {story.links.map((link) => <a href={link.officialUrl} target="_blank" rel="noreferrer">{outputLinkLabel(link)}</a>)}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="story-visual">
+                        {
+                          visual.kind === "figure" ? (
+                            <figure class="story-evidence-figure">
+                              <img src={visual.src} alt={visual.alt} loading="lazy" />
+                              <figcaption>{visual.caption}</figcaption>
+                            </figure>
+                          ) : (
+                            <div class="study-map-card">
+                              <p class="visual-label">{visual.title}</p>
+                              <div class="study-map-grid">
+                                {visual.rows.map((row) => (
+                                  <div class="study-map-cell">
+                                    <span>{row.label}</span>
+                                    <strong>{row.value}</strong>
+                                  </div>
+                                ))}
+                              </div>
+                              <p class="visual-note">{visual.caption}</p>
+                            </div>
+                          )
+                        }
+                      </div>
+                    </article>
+                  );
+                })
+              }
+            </div>
+          </div>
+
+          <div class="work-panel" data-work-panel="publications" hidden>
+            <div class="card-grid">
+              {homepageData.selectedPublications.map((publication) => <PublicationCard publication={publication} />)}
+            </div>
+            <div class="section-actions">
+              <a class="button button-secondary" href="/publications">Open the full publication record</a>
+            </div>
+          </div>
+
+          <div class="work-panel" data-work-panel="projects" hidden>
+            <div class="card-grid">
+              {homepageData.projects.map((project) => <ProjectCard project={project} />)}
+            </div>
+            <div class="section-actions">
+              <a class="button button-secondary" href="/projects">Open the projects page</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell accent-shell">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Methods"
+        title="Methods used in current work"
+        body="This stack is here to support the research story, not replace it. These are the methods that keep showing up across the recent record."
+      />
+
+      <div class="methods-grid">
+        {homepageData.methods.map((group) => (
+          <article class="method-card">
+            <h3>{group.title}</h3>
+            <p class="method-card-body">{group.body}</p>
+            <ul class="calm-list">
+              {group.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell" id="journey">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Experience timeline"
+        title="Recent to earlier milestones"
+        body="This runs in reverse chronological order so a recruiter or collaborator sees the current work first, then the research path that led into it."
+      />
+
+      <div class="timeline-shell">
+        {homepageData.journeyMilestones.map((event) => (
+          <article class="timeline-item">
+            <div class="timeline-rail">
+              <span class="timeline-dot"></span>
+              <span class="timeline-date">{event.fullDateLabel}</span>
+            </div>
+            <div class="timeline-card milestone-card">
+              <p class="timeline-title">{event.title}</p>
+              <p class="timeline-meta">{[event.institution, event.role].filter(Boolean).join(" • ")}</p>
+              <p>{event.summary}</p>
+              {event.metricBadges.length > 0 && (
+                <div class="tag-row timeline-tags">
+                  {event.metricBadges.map((metric) => <span class="tag">{metric}</span>)}
+                </div>
+              )}
+              {event.detail && <p class="timeline-detail">{event.detail}</p>}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="section-actions">
+        <a class="button button-secondary" href="/resume">See the recruiter-ready resume page</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell accent-shell" id="awards">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Recognition"
+        title="Awards, presentations, and leadership"
+        body="These items add context to the research record without duplicating it."
+      />
+
+      <div class="award-grid">
+        {homepageData.awards.map((award) => (
+          <article class="award-card">
+            <p class="meta-kicker">{award.meta}</p>
+            <h3>{award.title}</h3>
+            <p>{award.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell" id="contact">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Contact and resume"
+        title="Contact, resume, and public profiles"
+        body="Email, resume downloads, and the main public profiles are all collected here."
+      />
+
+      <div class="contact-grid">
+        {homepageData.contactCards.map((item) => (
+          <article class="contact-card">
+            <p class="meta-kicker">{item.label}</p>
+            {item.href ? (
+              <a class="contact-value" href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined} rel={item.href.startsWith("http") ? "noreferrer" : undefined}>
+                {item.value}
+              </a>
+            ) : (
+              <p class="contact-value">{item.value}</p>
+            )}
+            <p class="contact-note">{item.note}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="contact-strip">
+        <a href={siteMeta.downloads.resumePdf} download>Download Resume (PDF)</a>
+        <a href={siteMeta.downloads.cvPdf} download>Full CV (PDF)</a>
+        <a href={siteMeta.downloads.cvDocx} download>Full CV (DOCX)</a>
+        <a href="/resume">Open resume page</a>
+        <a href={`mailto:${siteMeta.email}`}>Email Alison</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const focusRoot = document.querySelector("[data-focus-root]");
+    if (focusRoot) {
+      const buttons = Array.from(focusRoot.querySelectorAll("[data-focus-target]"));
+      const panels = Array.from(focusRoot.querySelectorAll("[data-focus-panel]"));
+
+      focusRoot.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+
+        const button = target.closest("[data-focus-target]");
+        if (!(button instanceof HTMLButtonElement)) return;
+
+        const panelId = button.dataset.focusTarget;
+        if (!panelId) return;
+
+        buttons.forEach((node) => node.classList.toggle("is-active", node === button));
+        panels.forEach((panel) => {
+          panel.toggleAttribute("hidden", panel.getAttribute("data-focus-panel") !== panelId);
+        });
+      });
+    }
+
+    const workTabsRoot = document.querySelector("[data-work-tabs-root]");
+    if (workTabsRoot) {
+      const buttons = Array.from(workTabsRoot.querySelectorAll("[data-work-tab]"));
+      const panels = Array.from(workTabsRoot.querySelectorAll("[data-work-panel]"));
+
+      workTabsRoot.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
+
+        const button = target.closest("[data-work-tab]");
+        if (!(button instanceof HTMLButtonElement)) return;
+
+        const tab = button.dataset.workTab;
+        if (!tab) return;
+
+        buttons.forEach((node) => node.classList.toggle("is-active", node === button));
+        panels.forEach((panel) => {
+          panel.toggleAttribute("hidden", panel.getAttribute("data-work-panel") !== tab);
+        });
+      });
+    }
+  </script>
+</MainLayout>

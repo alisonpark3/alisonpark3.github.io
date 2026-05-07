@@ -1,0 +1,128 @@
+---
+type AuthorLink = {
+  name: string;
+  href: string;
+  isAlison: boolean;
+  position: string;
+};
+
+type Publication = {
+  title: string;
+  year: string;
+  citation: string;
+  type: string;
+  authorRole: string;
+  venue: string;
+  conferenceName: string;
+  conferenceSession: string;
+  localProofStatus: string;
+  proofNote: string;
+  metricSummary: string;
+  topicSummary: string;
+  tags: string[];
+  authorsPreview: AuthorLink[];
+  authorsAll: AuthorLink[];
+  hiddenAuthorCount: number;
+  officialUrl: string;
+  doiUrl: string;
+  conferenceProgramUrl: string;
+  conferenceOfficialUrl: string;
+  awardLabel: string;
+  nameVariantNote: string;
+};
+
+const { publication } = Astro.props as { publication: Publication };
+---
+
+<article class="publication-card" data-tags={publication.tags.join("|")}>
+  <div class="publication-meta-row">
+    <div class="publication-pill-row">
+      <span class="pill">{publication.type}</span>
+      {publication.awardLabel && <span class="pill pill-highlight">{publication.awardLabel}</span>}
+    </div>
+    <span class="meta-kicker">{publication.year}</span>
+  </div>
+
+  <h3>{publication.title}</h3>
+  <p class="publication-citation">{publication.citation}</p>
+  <p class="card-body">{publication.metricSummary}</p>
+
+  <div class="publication-authors">
+    <p class="publication-label">Authors</p>
+    <p class="publication-author-line">
+      {
+        publication.authorsPreview.map((author, index) => (
+          <>
+            {index > 0 && <span>, </span>}
+            {author.href ? (
+              <a href={author.href} target="_blank" rel="noreferrer" class:list={["author-link", author.isAlison && "is-alison"]}>
+                {author.name}
+              </a>
+            ) : (
+              <span class:list={["author-link", author.isAlison && "is-alison"]}>{author.name}</span>
+            )}
+          </>
+        ))
+      }
+      {publication.hiddenAuthorCount > 0 && <span>, +{publication.hiddenAuthorCount} more</span>}
+    </p>
+    {publication.nameVariantNote && <p class="publication-note">{publication.nameVariantNote}</p>}
+  </div>
+
+  <dl class="meta-grid">
+    <div>
+      <dt>Alison's role</dt>
+      <dd>{publication.authorRole}</dd>
+    </div>
+    <div>
+      <dt>Conference / venue</dt>
+      <dd>{publication.conferenceName || publication.venue}</dd>
+    </div>
+    <div>
+      <dt>Session</dt>
+      <dd>{publication.conferenceSession || (publication.type === "Journal article" ? "Peer-reviewed article" : "Conference abstract")}</dd>
+    </div>
+    <div>
+      <dt>Proof status</dt>
+      <dd>{publication.localProofStatus}</dd>
+    </div>
+  </dl>
+
+  <div class="tag-row">
+    {publication.tags.map((tag) => <span class="tag">{tag}</span>)}
+  </div>
+
+  <p class="publication-topic">{publication.topicSummary}</p>
+  <p class="publication-proof-note">{publication.proofNote}</p>
+
+  {publication.authorsAll.length > publication.authorsPreview.length && (
+    <details class="author-details">
+      <summary>View full author list</summary>
+      <p class="publication-author-line publication-author-line-all">
+        {
+          publication.authorsAll.map((author, index) => (
+            <>
+              {index > 0 && <span>, </span>}
+              {author.href ? (
+                <a href={author.href} target="_blank" rel="noreferrer" class:list={["author-link", author.isAlison && "is-alison"]}>
+                  {author.name}
+                </a>
+              ) : (
+                <span class:list={["author-link", author.isAlison && "is-alison"]}>{author.name}</span>
+              )}
+            </>
+          ))
+        }
+      </p>
+    </details>
+  )}
+
+  <div class="card-links">
+    <a href={publication.officialUrl} target="_blank" rel="noreferrer">Official record</a>
+    {publication.doiUrl && <a href={publication.doiUrl} target="_blank" rel="noreferrer">DOI</a>}
+    {publication.conferenceProgramUrl && <a href={publication.conferenceProgramUrl} target="_blank" rel="noreferrer">Conference context</a>}
+    {!publication.conferenceProgramUrl && publication.conferenceOfficialUrl && (
+      <a href={publication.conferenceOfficialUrl} target="_blank" rel="noreferrer">Conference page</a>
+    )}
+  </div>
+</article>
