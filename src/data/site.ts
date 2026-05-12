@@ -426,42 +426,47 @@ const journeyMilestones = timeline
 
 const proofStrip = [
   {
-    label: "Research record",
+    label: "Public research record",
     value: "8 public outputs",
-    note: "1 Journal of Medicinal Chemistry article plus 7 conference abstracts across Blood and CLML / IMS."
+    note: "1 Journal of Medicinal Chemistry article and 7 conference abstracts tracked across Blood and CLML / IMS."
   },
   {
-    label: "Cohort scale",
-    value: "389 patients + 776,859 cells",
-    note: "Recent myeloma work spans bulk and single-cell datasets rather than one analysis mode alone."
+    label: "Multi-omics cohort",
+    value: "389 NDMM patients",
+    note: "The CLML / IMS subtype study integrates WES, RNA-seq, clinical data, and CyTOF immune profiling."
   },
   {
-    label: "Recognition",
-    value: "2 ASH awards",
-    note: "Two 2024 Blood abstracts are documented in the CV as ASH Abstract Achievement Award work."
+    label: "Single-cell scale",
+    value: "776,859 cells",
+    note: "The largest listed single-cell companion analysis; the APC study separately reports 72 patients and 567,340 cells."
   },
   {
-    label: "Translational range",
-    value: "2015 to 2026",
-    note: "The portfolio runs from early cancer-biology internships to current computational oncology and AI-oriented analysis workflows."
+    label: "ASH recognition",
+    value: "2 award-marked abstracts",
+    note: "The CV marks both 2024 Blood abstracts as ASH Abstract Achievement Award work."
   },
   {
-    label: "Drug-discovery signal",
+    label: "SETD8 inhibitor signal",
     value: "0.14 +/- 0.04 uM",
-    note: "Published SETD8 lead-compound potency, paired with selectivity data across 20 methyltransferases."
+    note: "Published MS2928 SETD8 biochemical potency, paired with selectivity testing across 20 methyltransferases."
   }
 ];
 
 const rolePanels = [
   {
-    title: "For research teams",
+    title: "1. Cancer-biology foundation",
     body:
-      "The strongest fit is work that needs biological nuance and computational rigor at the same time: tumor and immune profiling, clinically interpretable subtype discovery, and translational oncology questions that have to stay grounded in real disease biology."
+      "Early work established the disease and mechanism context: relapsed myeloma, mantle-cell lymphoma models, E2F1, SETD8, xenografts, and assay interpretation."
   },
   {
-    title: "For ML and generative-AI teams",
+    title: "2. Patient-scale modeling",
     body:
-      "The same profile also translates to applied machine-learning and emerging LLM-analysis workflows in biomedicine: messy heterogeneous data, constrained sample sizes, reproducible pipeline thinking, and outputs that still need to make sense to domain experts."
+      "Current work moves that foundation into multi-omics subtype modeling and single-cell immune profiling, where each number maps back to a named cohort or abstract."
+  },
+  {
+    title: "3. AI pipeline development",
+    body:
+      ""
   }
 ];
 
@@ -471,7 +476,7 @@ const focusMap = [
     label: "Multi-omics modeling",
     title: "Subtype discovery from integrated cohorts",
     body: "This line of work combines WES, RNA-seq, CyTOF, and network integration to refine multiple-myeloma structure beyond standard staging labels.",
-    evidence: "389 patients, 6 clusters, hazard ratio 4.46",
+    evidence: "389 patients, 6 clusters, HR 4.46 vs Cluster 6",
     skills: ["SNF", "spectral clustering", "cohort integration", "survival analysis"],
     links: [
       {
@@ -485,7 +490,7 @@ const focusMap = [
     label: "Single-cell immune profiling",
     title: "Cell-state changes in high-risk disease",
     body: "This vertical maps how aggressive disease changes antigen presentation, IFN-stimulated T-cell states, and immune composition at cellular resolution.",
-    evidence: "72 patients, 567,340 cells, 92 populations",
+    evidence: "72 NDMM patients, 567,340 BM cells, 92 identified cell populations",
     skills: ["Scanpy", "Seurat", "InferCNV", "CellphoneDB", "pySCENIC"],
     links: [
       {
@@ -503,7 +508,7 @@ const focusMap = [
     label: "Cross-model comparison",
     title: "Shared immune features across patient and murine systems",
     body: "This work extends the single-cell story by asking which immune and clonal signals remain consistent across human subtypes and murine models.",
-    evidence: "159 patients, 435,000 cells, hazard ratio 2.3",
+    evidence: "159 NDMM patients, 435,000 cells, HR 2.3 for single-clone fraction >=19%",
     skills: ["clone analysis", "single-cell integration", "survival association", "cross-model comparison"],
     links: [
       {
@@ -517,7 +522,7 @@ const focusMap = [
     label: "Translational therapeutics",
     title: "From epigenetic mechanism to inhibitor evidence",
     body: "The SETD8 program ties disease relevance, inhibitor design, selectivity, and in vivo evidence together in one translational thread.",
-    evidence: "Lead compound IC50 0.14 +/- 0.04 uM across a 20-enzyme panel",
+    evidence: "SETD8 IC50 0.14 +/- 0.04 uM; selectivity tested across 20 methyltransferases",
     skills: ["compound evaluation", "crystallography", "mass spectrometry", "xenograft studies"],
     links: [
       {
@@ -532,15 +537,12 @@ const focusMap = [
   },
   {
     id: "ml-llm",
-    label: "ML + LLM analysis",
-    title: "Machine-learning and generative-AI workflows",
-    body: "Alongside omics research, the profile is being positioned toward applied machine-learning and LLM-assisted biomedical analysis workflows, with public code that shows healthcare modeling and medical-imaging experimentation.",
-    evidence: "Public code in healthcare classification, imaging, and health-data analysis",
-    skills: ["Python", "scikit-learn", "notebook workflows", "LLM-assisted analysis direction"],
-    links: [
-      { label: "GitHub profile", href: CONTACT.github },
-      { label: "Projects page", href: "/projects" }
-    ]
+    label: "AI pipeline development",
+    title: "AI pipeline development",
+    body: "",
+    evidence: "",
+    skills: [],
+    links: []
   }
 ];
 

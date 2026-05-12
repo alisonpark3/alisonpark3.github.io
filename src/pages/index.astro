@@ -24,9 +24,9 @@ const storyVisuals = {
     title: "Study structure",
     rows: [
       { label: "Inputs", value: "WES + RNA-seq + CyTOF" },
-      { label: "Cohort", value: "389 newly diagnosed patients" },
+      { label: "Cohort", value: "389 NDMM patients" },
       { label: "Modeling output", value: "6 integrated clusters" },
-      { label: "Clinical signal", value: "Hazard ratio 4.46" }
+      { label: "Clinical signal", value: "HR 4.46 vs Cluster 6" }
     ],
     caption: "Structured from the abstract metrics and methods rather than a full-paper figure."
   },
@@ -37,7 +37,7 @@ const storyVisuals = {
       { label: "Patients", value: "159 NDMM cases" },
       { label: "Cells", value: "435,000 profiled cells" },
       { label: "Clone signal", value: "Median 8 clones per patient" },
-      { label: "Outcome signal", value: "Hazard ratio 2.3 for death" }
+      { label: "Outcome signal", value: "HR 2.3 for death" }
     ],
     caption: "Built from the official abstract record because the source PDF is abstract-only."
   },
@@ -118,12 +118,8 @@ function outputLinkLabel(link: { year: string; type: string; venue: string; conf
   <section class="proof-section">
     <div class="content-grid">
       <div class="section-heading proof-heading">
-        <p class="section-eyebrow">Overview context</p>
-        <h2>What the record actually covers</h2>
-        <p class="section-body">
-          The numbers below matter only if they are readable in context: research scale, publication record, recognition, and the bridge from cancer biology to
-          computational and AI-oriented biomedical analysis.
-        </p>
+        <p class="section-eyebrow">Evidence record</p>
+        <h2>Record at a glance</h2>
       </div>
 
       <div class="proof-grid proof-grid-context">
@@ -145,14 +141,14 @@ function outputLinkLabel(link: { year: string; type: string; venue: string; conf
       <SectionHeading
         eyebrow="Research focus"
         title="From cancer biology to computational oncology, machine learning, and LLM-assisted analysis"
-        body="The profile is strongest when the science question is real, the dataset is messy, and the analysis needs to stay interpretable to clinicians and cancer researchers. The map below shows how each vertical ties back to specific outputs, methods, and public evidence."
+        body="The storyline starts with cancer-biology mechanisms, moves into patient-scale multi-omics and single-cell immune profiling, then returns to translational validation through SETD8 inhibitor evidence. Each focus area below is tied to a specific public output so the cohort sizes, cell counts, and effect estimates stay source-specific."
       />
 
       <div class="split-grid">
         {homepageData.rolePanels.map((item) => (
           <article class="split-card">
             <h3>{item.title}</h3>
-            <p>{item.body}</p>
+            {item.body && <p>{item.body}</p>}
           </article>
         ))}
       </div>
@@ -169,29 +165,35 @@ function outputLinkLabel(link: { year: string; type: string; venue: string; conf
 
         <div class="focus-map-panels">
           {homepageData.focusMap.map((item, index) => (
-            <article class="focus-map-panel" data-focus-panel={item.id} hidden={index !== 0}>
+            <article class:list={["focus-map-panel", item.links.length === 0 && "is-reserved"]} data-focus-panel={item.id} hidden={index !== 0}>
               <div class="focus-map-copy">
                 <p class="meta-kicker">Focus vertical</p>
                 <h3>{item.title}</h3>
-                <p>{item.body}</p>
-                <div class="focus-map-evidence">
-                  <span>Backed by</span>
-                  <strong>{item.evidence}</strong>
-                </div>
-                <div class="tag-row">
-                  {item.skills.map((skill) => <span class="tag">{skill}</span>)}
-                </div>
+                {item.body && <p>{item.body}</p>}
+                {item.evidence && (
+                  <div class="focus-map-evidence">
+                    <span>Backed by</span>
+                    <strong>{item.evidence}</strong>
+                  </div>
+                )}
+                {item.skills.length > 0 && (
+                  <div class="tag-row">
+                    {item.skills.map((skill) => <span class="tag">{skill}</span>)}
+                  </div>
+                )}
               </div>
-              <div class="focus-map-links">
-                <p class="publication-label">Related evidence</p>
-                <div class="focus-link-list">
-                  {item.links.map((link) => (
-                    <a href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel={link.href.startsWith("http") ? "noreferrer" : undefined}>
-                      {link.label}
-                    </a>
-                  ))}
+              {item.links.length > 0 && (
+                <div class="focus-map-links">
+                  <p class="publication-label">Related evidence</p>
+                  <div class="focus-link-list">
+                    {item.links.map((link) => (
+                      <a href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel={link.href.startsWith("http") ? "noreferrer" : undefined}>
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </article>
           ))}
         </div>
