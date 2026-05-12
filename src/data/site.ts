@@ -376,27 +376,61 @@ const projects = (tables.projects || [])
   }))
   .sort((left, right) => left.title.localeCompare(right.title));
 
+const timelineCopy: Record<
+  string,
+  Partial<{
+    title: string;
+    role: string;
+    summary: string;
+    detail: string;
+    fullDateLabel: string;
+  }>
+> = {
+  evt_2017_mount_sinai_trainee: {
+    title: "Volunteer Research Trainee",
+    role: "Cancer Epigenetics Laboratory",
+    fullDateLabel: "September 2017 to July 2018",
+    summary:
+      "Learned how a translational oncology project moves from question to evidence by supporting Donna Edwards, PhD, on the SOX11 mantle-cell lymphoma program.",
+    detail:
+      "Built the bench foundation through compound screening, cell culture, flow cytometry, PCR/qPCR, Western blotting, lentiviral transduction, mouse breeding and lymph-node/spleen harvests, while observing ChIP-seq workflows, scientific writing, and Samir Parekh's clinical view of diagnosis and disease monitoring."
+  },
+  evt_2018_mount_sinai_ra: {
+    summary:
+      "Promoted from volunteer to research assistant, took ownership of a SETD8 drug-discovery project, and continued contributing to E2F1/selinexor and SOX11 work.",
+    detail:
+      "Built the program step by step: E2F1/selinexor work led to an ASH abstract; SETD8 work began with a Mount Sinai collaborator's compound, then moved through myeloma cell-line efficacy and toxicity screens, flow and cell-culture assays, qPCR/Western blot validation, cell-separation assays, CRISPR knockout studies for SOX11/SETD8, xenograft testing in immunocompromised mice versus saline placebo, and IHC/imaging review with pathologists. The SETD8 program later matured into the 2026 Journal of Medicinal Chemistry inhibitor paper."
+  }
+};
+
 const timeline = [...(tables.timeline_events || [])]
   .sort((left, right) => left.start_date.localeCompare(right.start_date))
-  .map((event) => ({
-    id: event.event_id,
-    sortDate: event.start_date,
-    dateLabel: timelineDateLabel(event),
-    fullDateLabel: formatRange(event.start_date, event.end_date, event.event_id === "evt_2023_bioinformatician", "long"),
-    title: event.title,
-    institution: institutionName(event.institution_id),
-    role: event.role_or_program,
-    summary: event.summary,
-    detail:
-      event.event_id === "evt_2017_bs_start"
-        ? "Honor verified as Cum Laude in the official CCNY commencement book."
-        : event.quantifiable_details,
-    category: event.category
-  }));
+  .map((event) => {
+    const copy = timelineCopy[event.event_id] || {};
+    return {
+      id: event.event_id,
+      sortDate: event.start_date,
+      dateLabel: timelineDateLabel(event),
+      fullDateLabel:
+        copy.fullDateLabel ||
+        formatRange(event.start_date, event.end_date, event.event_id === "evt_2023_bioinformatician", "long"),
+      title: copy.title || event.title,
+      institution: institutionName(event.institution_id),
+      role: copy.role || event.role_or_program,
+      summary: copy.summary || event.summary,
+      detail:
+        copy.detail ||
+        (event.event_id === "evt_2017_bs_start"
+          ? "Honor verified as Cum Laude in the official CCNY commencement book."
+          : event.quantifiable_details),
+      category: event.category
+    };
+  });
 
 const journeyMilestoneIds = new Set([
   "evt_2015_feinstein_internship",
   "evt_2017_bs_start",
+  "evt_2017_mount_sinai_trainee",
   "evt_2018_mount_sinai_ra",
   "evt_2021_md_candidate",
   "evt_2023_flatiron",
@@ -411,7 +445,8 @@ const timelineMetricMap: Record<string, string[]> = {
   evt_2023_bioinformatician: ["389-patient cohort", "776,859-cell companion dataset", "Mount Sinai current role"],
   evt_2023_flatiron: ["525 hours", "5+ data-science projects"],
   evt_2021_md_candidate: ["2021 to 2023 medical training"],
-  evt_2018_mount_sinai_ra: ["SETD8 and E2F1 program", "multiple myeloma + MCL"],
+  evt_2018_mount_sinai_ra: ["E2F1/selinexor ASH abstract", "SETD8 inhibitor program", "xenograft + IHC validation"],
+  evt_2017_mount_sinai_trainee: ["SOX11 project training", "flow/qPCR/Western blot", "clinical shadowing"],
   evt_2017_bs_start: ["Cum Laude"],
   evt_2015_feinstein_internship: ["Summer internship"]
 };
@@ -708,9 +743,9 @@ const experience = [
     scope: "Cancer Epigenetics Laboratory",
     dates: "August 2018 to November 2021",
     bullets: [
-      "Studied epigenetic regulators including SETD8 and E2F1 in multiple myeloma and mantle cell lymphoma using in vitro and in vivo models.",
-      "Analyzed experimental data with t-tests, ANOVA, survival analysis, GraphPad Prism, and R while contributing to ASH presentations and later publications.",
-      "Worked in cross-functional teams on experimental design, protocol optimization, and translational interpretation."
+      "Advanced from volunteer trainee into an owned SETD8 inhibitor project while continuing SOX11 and E2F1/selinexor programs in multiple myeloma and mantle cell lymphoma.",
+      "Screened collaborator-derived compounds in cell lines, measured efficacy and toxicity with flow cytometry and cell-culture assays, and validated response with qPCR, Western blotting, cell-separation assays, and CRISPR knockout studies.",
+      "Ran xenograft studies in immunocompromised mice against saline placebo and partnered with pathologists on IHC/imaging review of harvested tumors; related E2F1/selinexor work produced an ASH abstract and SETD8 work matured into a 2026 JMC publication."
     ]
   },
   {
@@ -719,9 +754,9 @@ const experience = [
     scope: "Cancer biology foundations",
     dates: "2015 to 2018",
     bullets: [
-      "Built early cancer-biology foundations through internships in chronic lymphocytic leukemia and chemo-resistant bladder cancer.",
-      "Developed wet-lab familiarity with cell culture, Western blotting, flow cytometry, immunohistochemistry, PCR, genotyping, and mouse-model workflows.",
-      "Carried that bench background into later computational oncology work."
+      "Built early cancer-biology foundations through internships in chronic lymphocytic leukemia, chemo-resistant bladder cancer, and SOX11-focused mantle-cell lymphoma.",
+      "Learned project-building from senior scientists and a postdoctoral mentor through compound screening, cell culture, flow cytometry, PCR/qPCR, Western blotting, lentiviral transduction, mouse-model workflows, ChIP-seq exposure, and scientific writing.",
+      "Shadowed clinical decision-making in hematologic malignancy to connect bench assays with how clinicians diagnose, monitor, and interpret disease."
     ]
   }
 ];
