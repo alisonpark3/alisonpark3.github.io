@@ -456,12 +456,12 @@ const rolePanels = [
   {
     title: "1. Cancer-biology foundation",
     body:
-      "Early work established the disease and mechanism context: relapsed myeloma, mantle-cell lymphoma models, E2F1, SETD8, xenografts, and assay interpretation."
+      "Built a cancer-biology foundation through wet-lab and translational assay work, especially SETD8-focused multiple-myeloma research that later matured into a peer-reviewed inhibitor publication."
   },
   {
-    title: "2. Patient-scale modeling",
+    title: "2. Patient-scale computational modeling",
     body:
-      "Current work moves that foundation into multi-omics subtype modeling and single-cell immune profiling, where each number maps back to a named cohort or abstract."
+      "Transitioned that disease context into computational biology by integrating WES, single-cell RNA-seq, CyTOF, TCR-seq, and clinical data to build patient networks and multi-omic models of myeloma heterogeneity."
   },
   {
     title: "3. AI pipeline development",
