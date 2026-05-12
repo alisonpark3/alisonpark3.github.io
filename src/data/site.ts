@@ -51,6 +51,8 @@ type Publication = {
   proofNote: string;
   metricSummary: string;
   metricHighlights: { label: string; value: string }[];
+  posterUrl: string;
+  posterLabel: string;
   awardLabel: string;
   nameVariantNote: string;
 };
@@ -93,6 +95,16 @@ for (const row of tables.output_authors || []) {
 }
 
 const profileMetricLookup = new Map((tables.profile_metrics || []).map((row) => [`${row.platform}:${row.metric_name}`, row]));
+const posterLinks: Record<string, { url: string; label: string }> = {
+  out_2024_blood_single_cell_apc: {
+    url: "/files/posters/ASH_2024_POSTER_HRSR_MMRF_FINAL.pdf",
+    label: "ASH 2024 poster"
+  },
+  out_2024_blood_immune_profiling: {
+    url: "/files/posters/ASH_2024_POSTER_immunePSN_MMRF.pdf",
+    label: "ASH 2024 poster"
+  }
+};
 
 function institutionName(institutionId: string) {
   return (
@@ -325,6 +337,8 @@ const publications: Publication[] = outputs
       proofNote: proof.note,
       metricSummary: metricSentence(output.output_id),
       metricHighlights: metricHighlights(output.output_id),
+      posterUrl: posterLinks[output.output_id]?.url || "",
+      posterLabel: posterLinks[output.output_id]?.label || "",
       awardLabel: output.award_flag === "yes" ? "ASH Abstract Achievement Award" : "",
       nameVariantNote: nameVariantNote(output.alison_name_variant)
     };

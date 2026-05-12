@@ -13,10 +13,20 @@ const evidenceGallery = [
     alt: "Excerpt from the 2025 CLML / IMS abstract page."
   },
   {
-    title: "2024 Blood award abstracts",
-    note: "Paired excerpts from the two 2024 ASH award-marked abstracts on immune profiling and single-cell analysis.",
-    src: "/images/papers/story-immune/source-collage.png",
-    alt: "Paired source excerpts from the two 2024 Blood award abstracts."
+    title: "2024 ASH poster: single-cell high-risk NDMM",
+    note: "Poster PDF for the antigen-presenting cell and IFN-stimulated CD4 depletion work.",
+    src: "/images/papers/out_2024_blood_single_cell_apc/abstract-excerpt.png",
+    alt: "Excerpt from the 2024 Blood abstract on single-cell APC and IFN-stimulated CD4 depletion.",
+    href: "/files/posters/ASH_2024_POSTER_HRSR_MMRF_FINAL.pdf",
+    linkLabel: "Open poster PDF"
+  },
+  {
+    title: "2024 ASH poster: immune profiling / multi-omics PSN",
+    note: "Poster PDF for the immune-profiling study of multiple-myeloma subtypes defined by multi-omics network analysis.",
+    src: "/images/papers/out_2024_blood_immune_profiling/abstract-excerpt.png",
+    alt: "Excerpt from the 2024 Blood abstract on immune profiling and multi-omics network analysis.",
+    href: "/files/posters/ASH_2024_POSTER_immunePSN_MMRF.pdf",
+    linkLabel: "Open poster PDF"
   },
   {
     title: "2025 Blood shared-immune abstract",
@@ -94,6 +104,11 @@ const evidenceGallery = [
             </figure>
             <div class="evidence-card-copy">
               <p class="meta-kicker">{item.title}</p>
+              {item.href && (
+                <div class="card-links">
+                  <a href={item.href} target="_blank" rel="noreferrer">{item.linkLabel || "Open source"}</a>
+                </div>
+              )}
             </div>
           </article>
         ))}

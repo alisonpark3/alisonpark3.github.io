@@ -28,6 +28,8 @@ type Publication = {
   conferenceProgramUrl: string;
   conferenceOfficialUrl: string;
   awardLabel: string;
+  posterUrl: string;
+  posterLabel: string;
   nameVariantNote: string;
 };
 
@@ -119,6 +121,7 @@ const { publication } = Astro.props as { publication: Publication };
 
   <div class="card-links">
     <a href={publication.officialUrl} target="_blank" rel="noreferrer">Official record</a>
+    {publication.posterUrl && <a href={publication.posterUrl} target="_blank" rel="noreferrer">{publication.posterLabel || "Poster PDF"}</a>}
     {publication.doiUrl && <a href={publication.doiUrl} target="_blank" rel="noreferrer">DOI</a>}
     {publication.conferenceProgramUrl && <a href={publication.conferenceProgramUrl} target="_blank" rel="noreferrer">Conference context</a>}
     {!publication.conferenceProgramUrl && publication.conferenceOfficialUrl && (
