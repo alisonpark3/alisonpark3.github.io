@@ -1,11 +1,7 @@
 ---
-import { publications, siteMeta } from "../data/site";
+import { resumePageData, siteMeta } from "../data/site";
 
-const selectedPublications = [
-  publications.find((publication) => publication.id === "out_2026_jmc_setd8_inhibitor"),
-  publications.find((publication) => publication.id === "out_2025_clml_multiomic_snf"),
-  publications.find((publication) => publication.id === "out_2024_blood_immune_profiling")
-].filter(Boolean);
+const resumeHeadline = "Machine learning | Bioinformatics | Multiple myeloma | Single-cell genomics";
 ---
 
 <!doctype html>
@@ -155,12 +151,10 @@ const selectedPublications = [
       }
 
       .skill-block,
-      .compact-line,
-      .publication-line {
+      .compact-line {
         color: var(--ink-soft);
       }
 
-      .publication-line + .publication-line,
       .compact-line + .compact-line,
       .skill-block + .skill-block {
         margin-top: 5px;
@@ -206,92 +200,53 @@ const selectedPublications = [
       <section class="header">
         <div class="header-top">
           <h1 class="name">{siteMeta.title}</h1>
-          <p class="headline">Bioinformatician | Computational Oncology | Multi-Omics & Single-Cell Analysis</p>
+          <p class="headline">{resumeHeadline}</p>
         </div>
         <div class="contact-line">
           <span>{siteMeta.location}</span>
           <span>{siteMeta.phone}</span>
           <a href={`mailto:${siteMeta.email}`}>{siteMeta.email}</a>
           <a href={siteMeta.links.linkedin}>linkedin.com/in/alison-s-park</a>
-          <a href={siteMeta.links.github}>github.com/alisonpark3</a>
         </div>
-        <p class="summary">
-          Bioinformatician at Icahn School of Medicine at Mount Sinai applying multi-omics integration, single-cell RNA-seq analysis,
-          and unsupervised learning to multiple myeloma. Contributed to 8 verified public outputs, including a 2026
-          <em>Journal of Medicinal Chemistry</em> article and second-author abstracts spanning 389-patient and 776,859-cell studies.
-        </p>
+        <p class="summary">{resumePageData.summary}</p>
       </section>
 
       <section class="two-column">
         <div class="section">
-          <h2 class="section-title">Experience</h2>
+          <h2 class="section-title">Selected Experience</h2>
 
-          <article class="entry">
-            <div class="entry-head">
-              <div>
-                <p class="entry-title">Bioinformatician</p>
-                <p class="entry-subtitle">Icahn School of Medicine at Mount Sinai</p>
+          {resumePageData.experience.map((item) => (
+            <article class="entry">
+              <div class="entry-head">
+                <div>
+                  <p class="entry-title">{item.title}</p>
+                  <p class="entry-subtitle">{item.organization}</p>
+                </div>
+                <p class="entry-date">{item.dates}</p>
               </div>
-              <p class="entry-date">Dec 2023–Present</p>
-            </div>
-            <p class="entry-note">Multiple Myeloma Computational Research</p>
-            <ul>
-              <li>Integrated bulk RNA-seq, single-cell RNA-seq, and clinical data using SNF, cNMF, MOVICS, MOFA, and integrAO to stratify newly diagnosed multiple-myeloma cohorts.</li>
-              <li>Built patient-similarity network analyses that refined disease classification beyond traditional staging and surfaced immune-based subtypes with distinct outcomes.</li>
-              <li>Performed Scanpy and pySCENIC workflows that informed second-author studies spanning 389 patients and 776,859 cells.</li>
-            </ul>
-          </article>
-
-          <article class="entry">
-            <div class="entry-head">
-              <div>
-                <p class="entry-title">Research Assistant</p>
-                <p class="entry-subtitle">Icahn School of Medicine at Mount Sinai</p>
-              </div>
-              <p class="entry-date">Aug 2018–Nov 2021</p>
-            </div>
-            <p class="entry-note">Cancer Epigenetics Laboratory</p>
-            <ul>
-              <li>Studied SETD8 and E2F1 in multiple myeloma and mantle cell lymphoma using in vitro and in vivo models, contributing to ASH abstracts and later medicinal-chemistry publication.</li>
-              <li>Analyzed experimental datasets with R, Prism, and survival analysis while working in cross-functional translational oncology teams.</li>
-            </ul>
-          </article>
-
-          <article class="entry">
-            <div class="entry-head">
-              <div>
-                <p class="entry-title">Earlier Research Training</p>
-                <p class="entry-subtitle">Mount Sinai and Northwell Health</p>
-              </div>
-              <p class="entry-date">2015–2018</p>
-            </div>
-            <ul>
-              <li>Built cancer-biology foundations through internships in chronic lymphocytic leukemia and chemo-resistant bladder cancer, developing wet-lab familiarity with cell culture, flow cytometry, immunohistochemistry, PCR, genotyping, and mouse-model workflows.</li>
-            </ul>
-          </article>
+              <p class="entry-note">{item.scope}</p>
+              <ul>
+                {item.bullets.map((bullet) => <li>{bullet}</li>)}
+              </ul>
+            </article>
+          ))}
         </div>
 
         <div class="section">
           <h2 class="section-title">Education</h2>
-          <p class="compact-line"><strong>Sophie Davis / The City College of New York</strong><br />BS Biomedical Sciences, Cum Laude | 2021</p>
-          <p class="compact-line"><strong>Flatiron School</strong><br />Data Science Bootcamp | 2023</p>
-          <p class="compact-line"><strong>CUNY School of Medicine</strong><br />Medical training period | 2021–2023</p>
-
-          <h2 class="section-title">Technical Skills</h2>
-          <p class="skill-block"><strong>Programming:</strong> Python, R, SQL, shell scripting, Git/GitHub</p>
-          <p class="skill-block"><strong>ML / Statistics:</strong> scikit-learn, survival analysis, clustering, dimensionality reduction, feature engineering</p>
-          <p class="skill-block"><strong>Genomics:</strong> Scanpy, Seurat, pySCENIC, bulk RNA-seq, single-cell RNA-seq, DESeq2, GSEA</p>
-          <p class="skill-block"><strong>Infrastructure:</strong> Docker, HPC, reproducible workflows, multi-institutional dataset management</p>
-
-          <h2 class="section-title">Selected Research Outputs</h2>
-          {selectedPublications.map((publication) => (
-            <p class="publication-line">
-              <strong>{publication.year}.</strong> {publication.title}. <em>{publication.venue}</em>.
+          {resumePageData.education.map((item) => (
+            <p class="compact-line">
+              <strong>{item.title}</strong><br />
+              {item.credential} | {item.dates}
             </p>
           ))}
 
-          <h2 class="section-title">Awards</h2>
-          <p class="compact-line">ASH Abstract Achievement Award (2), 2024 • UKC FIRE 2025, 2nd place • Cum Laude, 2021</p>
+          <h2 class="section-title">Technical Skills</h2>
+          {resumePageData.skills.map((group) => (
+            <p class="skill-block">
+              <strong>{group.title}:</strong> {group.items.join(", ")}
+            </p>
+          ))}
         </div>
       </section>
     </main>

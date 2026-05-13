@@ -881,7 +881,7 @@ export const siteMeta = {
   lead: "Machine learning, generative AI, and cancer-data analysis",
   subhead: "Machine-learning scientist working across computational oncology, multi-omics, single-cell genomics, GPU-accelerated genomic pipelines, and LLM-assisted analysis.",
   heroSummary:
-    "Alison Seongjee Park works at the intersection of cancer genomics, machine learning, and LLM-assisted biomedical workflows. Her path runs from wet-lab cancer biology and medical training into multi-omics, accelerated single-cell analysis, and genomic analysis, where she connects genomic signal, immune context, and clinically meaningful cancer biology across myeloma and broader pan-cancer questions. Current work extends into GPU-accelerated genomic pipelines, consensus-calling and re-validation systems for reducing LLM hallucinations, and LLM-enabled codebases for analyzing multiple data modalities.",
+    "Alison Seongjee Park is a bioinformatician and machine-learning scientist at Mount Sinai working in computational oncology. Her current work centers on multiple myeloma, multi-omics integration, single-cell analysis, and AI-assisted genomic workflows built around real biomedical datasets.",
   roleTargetLine:
     "Open to research and industry roles where machine learning, accelerated computing, and LLM-enabled genomic workflows can shape precision medicine, drug discovery, or clinically grounded biomedical software.",
   location: CONTACT.location,
@@ -933,7 +933,6 @@ export const resumePageData = {
   experience,
   education,
   skills: resumeSkills,
-  publicationsSnapshot: publications.slice(0, 5),
   downloads: DOWNLOADS
 };
 

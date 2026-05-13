@@ -1037,12 +1037,22 @@ main {
 
 .publication-note,
 .publication-topic,
-.publication-proof-note {
+.publication-proof-note,
+.publication-context-block {
   margin-top: 12px;
+}
+
+.publication-context-block {
+  display: grid;
+  gap: 8px;
 }
 
 .publication-topic {
   color: var(--ink);
+}
+
+.publication-proof-note {
+  color: var(--ink-soft);
 }
 
 .author-details {

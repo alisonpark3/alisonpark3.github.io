@@ -47,7 +47,6 @@ const { publication } = Astro.props as { publication: Publication };
 
   <h3>{publication.title}</h3>
   <p class="publication-citation">{publication.citation}</p>
-  <p class="card-body">{publication.metricSummary}</p>
 
   <div class="publication-authors">
     <p class="publication-label">Authors</p>
@@ -94,8 +93,17 @@ const { publication } = Astro.props as { publication: Publication };
     {publication.tags.map((tag) => <span class="tag">{tag}</span>)}
   </div>
 
-  <p class="publication-topic">{publication.topicSummary}</p>
-  <p class="publication-proof-note">{publication.proofNote}</p>
+  {publication.topicSummary && (
+    <div class="publication-context-block">
+      <p class="publication-label">Context</p>
+      <p class="publication-topic">{publication.topicSummary}</p>
+    </div>
+  )}
+
+  <div class="publication-context-block">
+    <p class="publication-label">Traceability</p>
+    <p class="publication-proof-note">{publication.proofNote}</p>
+  </div>
 
   {publication.authorsAll.length > publication.authorsPreview.length && (
     <details class="author-details">
