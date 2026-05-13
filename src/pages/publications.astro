@@ -2,7 +2,7 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import PublicationCard from "../components/PublicationCard.astro";
 import SectionHeading from "../components/SectionHeading.astro";
-import { publications, siteMeta, stats } from "../data/site";
+import { publications, siteMeta } from "../data/site";
 
 const filters = ["All", "Journal article", "ASH", "IMS", "Awarded", "Single-Cell", "Multi-Omics", "Drug Discovery"];
 const evidenceGallery = [
@@ -49,41 +49,14 @@ const evidenceGallery = [
       <p class="hero-kicker">Research record</p>
       <h1>Publications and conference abstracts</h1>
       <p class="hero-body">
-        Alison&apos;s public research record currently spans <strong>{stats.outputsTotal} verified outputs</strong>: one published medicinal-chemistry article
-        and seven conference abstracts across multiple myeloma, immune profiling, and translational target discovery.
+        A focused record of myeloma subtype modeling, single-cell immune profiling, and SETD8 drug-discovery work. The cards below link to the official
+        publication record, conference abstract, or poster when available.
       </p>
       <div class="subpage-meta">
         <span class="pill">1 journal article</span>
         <span class="pill">7 conference abstracts</span>
         <span class="pill">2 award-marked ASH abstracts</span>
         <span class="pill">Official links on every card</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-shell">
-    <div class="content-grid">
-      <SectionHeading
-        eyebrow="Reading the record"
-        title="What this page shows"
-        body="The chronology matters. Early ASH abstracts come from epigenetics and drug-response work, the 2024 and 2025 abstracts show Alison's second- and third-author computational myeloma work, and the 2026 SETD8 paper closes the loop back to translational target discovery."
-      />
-
-      <div class="split-grid">
-        <article class="split-card">
-          <h3>Name continuity</h3>
-          <p>
-            Earlier Blood records list the name variant <strong>Seongjee Park</strong> or <strong>S Park</strong>. Newer records appear as Alison S Park or
-            Alison Park. The authorship record here keeps those entries together as one continuous publication history.
-          </p>
-        </article>
-        <article class="split-card">
-          <h3>Proof and context</h3>
-          <p>
-            Each card includes the official publication or abstract link, conference context when available, authorship position, and an authors list with public
-            collaborator links where they could be verified.
-          </p>
-        </article>
       </div>
     </div>
   </section>
