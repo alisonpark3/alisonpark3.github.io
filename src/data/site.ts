@@ -868,38 +868,38 @@ const education = [
     title: "CUNY School of Medicine",
     credential: "MD Candidate",
     dates: "August 2021 to January 2023",
-    note: "Medical training period documented in the CV."
+    note: "Medical training added clinical context to the translational and patient-facing side of the work."
   },
   {
     title: "Sophie Davis / The City College of New York",
     credential: "BS Biomedical Sciences, Cum Laude",
     dates: "August 2017 to May 2021",
-    note: "Public site uses the verified Cum Laude honor."
+    note: "Built the core biomedical-science foundation while continuing hands-on cancer research."
   },
   {
     title: "Flatiron School",
     credential: "Data Science Bootcamp",
     dates: "February 2023 to June 2023",
-    note: "Focused data-science training in Python, machine learning, and applied project work."
+    note: "Formal machine-learning pivot through intensive Python, modeling, and project-based training."
   }
 ];
 
 const resumeSkills = [
   {
-    title: "Programming and modeling",
-    items: ["Python", "R", "SQL", "scikit-learn", "PyTorch", "TensorFlow", "Keras"]
+    title: "Programming and analysis",
+    items: ["Python", "R", "SQL", "Scanpy", "Seurat", "pySCENIC", "survival analysis"]
   },
   {
-    title: "Bioinformatics and genomics",
-    items: ["Scanpy", "Seurat", "pySCENIC", "DESeq2", "GSEA", "single-cell RNA-seq", "bulk RNA-seq"]
+    title: "Genomics and single-cell work",
+    items: ["bulk RNA-seq", "single-cell RNA-seq", "DESeq2", "GSEA", "InferCNV", "CellphoneDB", "CyTOF integration"]
   },
   {
-    title: "ML and statistics",
-    items: ["survival analysis", "clustering", "dimensionality reduction", "XGBoost", "feature engineering", "statistical modeling"]
+    title: "Modeling methods",
+    items: ["SNF", "cNMF", "MOVICS", "MOFA", "integrAO", "clustering", "feature engineering"]
   },
   {
-    title: "Infrastructure and workflow",
-    items: ["Git/GitHub", "shell scripting", "HPC", "Docker", "workflow management", "reproducible research"]
+    title: "Workflow and infrastructure",
+    items: ["Git/GitHub", "shell scripting", "HPC environments", "reproducible workflows", "notebook-based ML analysis"]
   }
 ];
 
@@ -997,10 +997,25 @@ export const homepageData = {
 
 export const resumePageData = {
   summary:
-    "Bioinformatician and machine-learning engineer with a research profile centered on multi-omics integration, single-cell genomics, and translational oncology. The strongest recent work focuses on multiple myeloma, where computational analysis is used to uncover clinically meaningful subtypes and immune patterns.",
+    "Bioinformatician in computational oncology focused on multiple myeloma, multi-omics integration, and single-cell analysis. Recent work spans a 389-patient subtype study, 185-sample immune-profiling analyses, and SETD8 research that culminated in a Journal of Medicinal Chemistry paper.",
   experience,
   education,
   skills: resumeSkills,
+  highlightPills: ["389-patient subtype study", "185 samples / 776,859 cells", "1 JMC paper + 7 abstracts", "2 ASH award abstracts"],
+  railHighlights: [
+    {
+      title: "Current role",
+      body: "Bioinformatician at Icahn School of Medicine at Mount Sinai working in multiple-myeloma computational research."
+    },
+    {
+      title: "Recent research scale",
+      body: "Current work includes a 389-patient multi-omics cohort and companion immune-profiling analyses spanning 185 samples and 776,859 cells."
+    },
+    {
+      title: "Output record",
+      body: "Public record currently includes 1 Journal of Medicinal Chemistry paper, 7 abstracts, and 2 ASH award-marked abstracts."
+    }
+  ],
   downloads: DOWNLOADS
 };
 

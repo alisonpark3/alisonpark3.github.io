@@ -8,19 +8,15 @@ import { resumePageData, siteMeta } from "../data/site";
   <section class="subpage-hero">
     <div class="content-grid resume-hero-grid">
       <div class="resume-hero-copy">
-        <p class="hero-kicker">Recruiter resume</p>
+        <p class="hero-kicker">For recruiters</p>
         <h1>Resume</h1>
         <p class="hero-body resume-summary">{resumePageData.summary}</p>
         <div class="subpage-meta">
-          <span class="pill">Machine learning</span>
-          <span class="pill">Bioinformatics</span>
-          <span class="pill">Multiple myeloma</span>
-          <span class="pill">Single-cell genomics</span>
+          {resumePageData.highlightPills.map((item) => <span class="pill">{item}</span>)}
         </div>
         <div class="hero-actions">
           <a class="button button-primary" href={resumePageData.downloads.resumePdf} download>Download Resume (PDF)</a>
           <a class="button button-secondary" href={resumePageData.downloads.cvPdf} download>Full CV (PDF)</a>
-          <a class="button button-tertiary" href={resumePageData.downloads.cvDocx} download>Full CV (DOCX)</a>
           <a class="button button-tertiary" href={`mailto:${siteMeta.email}`}>Email Alison</a>
         </div>
       </div>
@@ -37,20 +33,14 @@ import { resumePageData, siteMeta } from "../data/site";
         </aside>
 
         <aside class="resume-panel">
-          <p class="meta-kicker">At a glance</p>
+          <p class="meta-kicker">Highlights</p>
           <div class="resume-download-stack">
-            <div class="resume-download-link">
-              <strong>{siteMeta.currentRole}</strong>
-              <span>Current role and research setting</span>
-            </div>
-            <div class="resume-download-link">
-              <strong>Multi-omics and single-cell analysis</strong>
-              <span>Current work spans WES, RNA-seq, CyTOF, TCR-seq, and clinical data integration</span>
-            </div>
-            <div class="resume-download-link">
-              <strong>Research + industry ML positioning</strong>
-              <span>Open to computational biology, genomic AI, and applied ML roles in healthcare</span>
-            </div>
+            {resumePageData.railHighlights.map((item) => (
+              <div class="resume-download-link">
+                <strong>{item.title}</strong>
+                <span>{item.body}</span>
+              </div>
+            ))}
           </div>
         </aside>
       </div>
@@ -62,7 +52,7 @@ import { resumePageData, siteMeta } from "../data/site";
       <SectionHeading
         eyebrow="Education"
         title="Education"
-        body="Biomedical sciences, medical training, and later formal training in data science."
+        body="Training across biomedical science, medical school coursework, and applied data science."
       />
 
       <div class="resume-card-grid resume-card-grid-3">
@@ -83,7 +73,7 @@ import { resumePageData, siteMeta } from "../data/site";
       <SectionHeading
         eyebrow="Selected experience"
         title="Selected experience"
-        body="Current computational oncology work, earlier translational research, and the core experience most relevant to hiring."
+        body="Roles most relevant to computational biology, translational oncology, and applied machine-learning hiring."
       />
 
       <div class="resume-experience-stack">
@@ -111,7 +101,7 @@ import { resumePageData, siteMeta } from "../data/site";
       <SectionHeading
         eyebrow="Technical strengths"
         title="Technical skills"
-        body="A recruiter-friendly cut of the technical profile."
+        body="Methods and tools most evident in the current research stack."
       />
 
       <div class="resume-card-grid resume-strength-grid">
@@ -131,17 +121,15 @@ import { resumePageData, siteMeta } from "../data/site";
     <div class="content-grid">
       <div class="resume-cta">
         <div>
-          <p class="section-eyebrow">Next step</p>
-          <h2>Download the resume or get in touch</h2>
+          <p class="section-eyebrow">Research archive</p>
+          <h2>Need the publication record too?</h2>
           <p class="section-body">
-            For research roles, computational biology openings, or industry ML roles connected to healthcare and precision medicine, email is the fastest path.
+            The publications page carries the formal paper and abstract record, including authorship order, poster PDFs, and source links.
           </p>
         </div>
         <div class="hero-actions">
-          <a class="button button-primary" href={`mailto:${siteMeta.email}`}>Email Alison</a>
-          <a class="button button-secondary" href={resumePageData.downloads.resumePdf} download>Download Resume (PDF)</a>
-          <a class="button button-tertiary" href={resumePageData.downloads.cvPdf} download>Full CV (PDF)</a>
-          <a class="button button-tertiary" href="/publications">Publication archive</a>
+          <a class="button button-primary" href="/publications">Publication archive</a>
+          <a class="button button-secondary" href={`mailto:${siteMeta.email}`}>Email Alison</a>
         </div>
       </div>
     </div>
