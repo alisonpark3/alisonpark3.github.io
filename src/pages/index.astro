@@ -386,7 +386,7 @@ function outputLinkLabel(link: { year: string; type: string; venue: string; conf
       <SectionHeading
         eyebrow="Contact and resume"
         title="Contact, resume, and public profiles"
-        body="Email, resume downloads, and the main public profiles are all collected here."
+        body="Email, phone, location, and the main public profiles are collected here. Resume and CV downloads live on the resume page."
       />
 
       <div class="contact-grid">
@@ -405,12 +405,18 @@ function outputLinkLabel(link: { year: string; type: string; venue: string; conf
         ))}
       </div>
 
-      <div class="contact-strip">
-        <a href={siteMeta.downloads.resumePdf} download>Download Resume (PDF)</a>
-        <a href={siteMeta.downloads.cvPdf} download>Full CV (PDF)</a>
-        <a href={siteMeta.downloads.cvDocx} download>Full CV (DOCX)</a>
-        <a href="/resume">Open resume page</a>
-        <a href={`mailto:${siteMeta.email}`}>Email Alison</a>
+      <div class="resume-cta">
+        <div>
+          <p class="section-eyebrow">Resume downloads</p>
+          <h2>Need the full resume or CV?</h2>
+          <p class="section-body">
+            The recruiter-facing resume page keeps the PDF resume, full CV, and contact details in one place.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <a class="button button-secondary" href="/resume">Open resume page</a>
+          <a class="button button-tertiary" href={`mailto:${siteMeta.email}`}>Email me</a>
+        </div>
       </div>
     </div>
   </section>
