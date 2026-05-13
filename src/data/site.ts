@@ -865,13 +865,13 @@ const contactCards = [
 export const siteMeta = {
   title: "Alison Seongjee Park",
   shortTitle: "Alison Park",
-  headline: "Bioinformatician | Computational Oncology | Multi-Omics & Single-Cell Analysis",
+  headline: "Machine Learning Scientist | Computational Oncology | Multi-Omics & Genomic AI Workflows",
   lead: "Machine learning, generative AI, and cancer-data analysis",
-  subhead: "Computational oncology, multi-omics, single-cell genomics, machine learning, large-language-model analysis, and multiple myeloma.",
+  subhead: "Machine-learning scientist working across computational oncology, multi-omics, single-cell genomics, GPU-accelerated genomic pipelines, and LLM-assisted analysis.",
   heroSummary:
-    "Alison Seongjee Park works across computational oncology, machine-learning analysis, and emerging LLM-assisted biomedical workflows. Her path runs from early wet-lab cancer biology and medical training into multi-omics and single-cell research, where she now builds analyses that connect genomic signal, immune context, and clinically meaningful multiple-myeloma subgroups.",
+    "Alison Seongjee Park works at the intersection of cancer genomics, machine learning, and LLM-assisted biomedical workflows. Her path runs from wet-lab cancer biology and medical training into multi-omics, accelerated single-cell analysis, and genomic analysis, where she connects genomic signal, immune context, and clinically meaningful cancer biology across myeloma and broader pan-cancer questions. Current work extends into GPU-accelerated genomic pipelines, consensus-calling and re-validation systems for reducing LLM hallucinations, and LLM-enabled codebases for analyzing multiple data modalities.",
   roleTargetLine:
-    "Open to research and industry roles where advanced analytics, machine learning, and generative-AI workflows can shape precision medicine, drug discovery, or clinically grounded biomedical software.",
+    "Open to research and industry roles where machine learning, accelerated computing, and LLM-enabled genomic workflows can shape precision medicine, drug discovery, or clinically grounded biomedical software.",
   location: CONTACT.location,
   currentRole: "Bioinformatician at Icahn School of Medicine at Mount Sinai",
   headshot: "/images/alison-park-chatgpt.png",
