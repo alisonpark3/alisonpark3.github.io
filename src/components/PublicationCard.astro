@@ -48,6 +48,16 @@ const { publication } = Astro.props as { publication: Publication };
   <h3>{publication.title}</h3>
   <p class="publication-citation">{publication.citation}</p>
 
+  {(publication.metricSummary || publication.topicSummary) && (
+    <p class="publication-summary">{publication.metricSummary || publication.topicSummary}</p>
+  )}
+
+  <div class="publication-fact-row">
+    <span>{publication.authorRole}</span>
+    <span>{publication.conferenceName || publication.venue}</span>
+    <span>{publication.conferenceSession || (publication.type === "Journal article" ? "Peer-reviewed paper" : "Conference abstract")}</span>
+  </div>
+
   <div class="publication-authors">
     <p class="publication-label">Authors</p>
     <p class="publication-author-line">
@@ -68,41 +78,6 @@ const { publication } = Astro.props as { publication: Publication };
       {publication.hiddenAuthorCount > 0 && <span>, +{publication.hiddenAuthorCount} more</span>}
     </p>
     {publication.nameVariantNote && <p class="publication-note">{publication.nameVariantNote}</p>}
-  </div>
-
-  <dl class="meta-grid">
-    <div>
-      <dt>Alison's role</dt>
-      <dd>{publication.authorRole}</dd>
-    </div>
-    <div>
-      <dt>Conference / venue</dt>
-      <dd>{publication.conferenceName || publication.venue}</dd>
-    </div>
-    <div>
-      <dt>Session</dt>
-      <dd>{publication.conferenceSession || (publication.type === "Journal article" ? "Peer-reviewed article" : "Conference abstract")}</dd>
-    </div>
-    <div>
-      <dt>Proof status</dt>
-      <dd>{publication.localProofStatus}</dd>
-    </div>
-  </dl>
-
-  <div class="tag-row">
-    {publication.tags.map((tag) => <span class="tag">{tag}</span>)}
-  </div>
-
-  {publication.topicSummary && (
-    <div class="publication-context-block">
-      <p class="publication-label">Context</p>
-      <p class="publication-topic">{publication.topicSummary}</p>
-    </div>
-  )}
-
-  <div class="publication-context-block">
-    <p class="publication-label">Traceability</p>
-    <p class="publication-proof-note">{publication.proofNote}</p>
   </div>
 
   {publication.authorsAll.length > publication.authorsPreview.length && (
@@ -126,6 +101,8 @@ const { publication } = Astro.props as { publication: Publication };
       </p>
     </details>
   )}
+
+  <p class="publication-proof-note">{publication.localProofStatus}. {publication.proofNote}</p>
 
   <div class="card-links">
     <a href={publication.officialUrl} target="_blank" rel="noreferrer">Official record</a>

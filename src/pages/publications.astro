@@ -3,7 +3,16 @@ import MainLayout from "../layouts/MainLayout.astro";
 import PublicationCard from "../components/PublicationCard.astro";
 import { publications, siteMeta } from "../data/site";
 
-const filters = ["All", "Journal article", "ASH", "IMS", "Awarded", "Single-Cell", "Multi-Omics", "Drug Discovery"];
+const filters = [
+  { value: "All", label: "All" },
+  { value: "Journal article", label: "Paper" },
+  { value: "ASH", label: "ASH" },
+  { value: "IMS", label: "IMS" },
+  { value: "Awarded", label: "Awarded" },
+  { value: "Single-Cell", label: "Single-cell" },
+  { value: "Multi-Omics", label: "Multi-omics" },
+  { value: "Drug Discovery", label: "Drug discovery" }
+];
 ---
 
 <MainLayout title={`${siteMeta.title} | Publications`} description="Publications and conference abstracts for Alison Seongjee Park.">
@@ -26,8 +35,8 @@ const filters = ["All", "Journal article", "ASH", "IMS", "Awarded", "Single-Cell
     <div class="content-grid">
       <div class="filter-bar" data-filter-root>
         {filters.map((filter, index) => (
-          <button class:list={["filter-chip", index === 0 && "is-active"]} type="button" data-filter={filter}>
-            {filter}
+          <button class:list={["filter-chip", index === 0 && "is-active"]} type="button" data-filter={filter.value}>
+            {filter.label}
           </button>
         ))}
       </div>
