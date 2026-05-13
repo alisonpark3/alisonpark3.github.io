@@ -1,8 +1,8 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import SectionHeading from "../components/SectionHeading.astro";
-import PublicationCard from "../components/PublicationCard.astro";
-import ProjectCard from "../components/ProjectCard.astro";
+import PublicationTeaserCard from "../components/PublicationTeaserCard.astro";
+import ProjectTeaserCard from "../components/ProjectTeaserCard.astro";
 import SocialIcon from "../components/SocialIcon.astro";
 import { homepageData, siteMeta } from "../data/site";
 
@@ -211,7 +211,7 @@ function outputLinkLabel(link: { year: string; type: string; venue: string; conf
       <SectionHeading
         eyebrow="Selected work"
         title="Case studies, publication record, and code"
-        body="This layer is split deliberately. Case studies explain why the work matters. Publications show the formal record. Code shows the visible implementation layer."
+        body="The homepage keeps just the strongest slices of the record. Full archive detail lives on the publications and projects pages."
       />
 
       <div class="work-tabs" data-work-tabs-root>
@@ -301,17 +301,17 @@ function outputLinkLabel(link: { year: string; type: string; venue: string; conf
           </div>
 
           <div class="work-panel" data-work-panel="publications" hidden>
-            <div class="card-grid">
-              {homepageData.selectedPublications.map((publication) => <PublicationCard publication={publication} />)}
+            <div class="card-grid teaser-grid">
+              {homepageData.selectedPublications.map((publication) => <PublicationTeaserCard publication={publication} />)}
             </div>
             <div class="section-actions">
-              <a class="button button-secondary" href="/publications">Open the full publication record</a>
+              <a class="button button-secondary" href="/publications">Open the full publication archive</a>
             </div>
           </div>
 
           <div class="work-panel" data-work-panel="projects" hidden>
-            <div class="card-grid">
-              {homepageData.projects.map((project) => <ProjectCard project={project} />)}
+            <div class="card-grid teaser-grid">
+              {homepageData.projects.map((project) => <ProjectTeaserCard project={project} />)}
             </div>
             <div class="section-actions">
               <a class="button button-secondary" href="/projects">Open the projects page</a>

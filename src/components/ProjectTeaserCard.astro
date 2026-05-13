@@ -1,0 +1,23 @@
+---
+type Project = {
+  title: string;
+  href: string;
+  summary: string;
+  metrics: string;
+  originality: string;
+};
+
+const { project } = Astro.props as { project: Project };
+---
+
+<article class="project-teaser-card">
+  <div class="publication-pill-row">
+    <span class="pill">{project.originality}</span>
+  </div>
+  <h3>{project.title}</h3>
+  <p class="card-body">{project.summary}</p>
+  {project.metrics && <p class="project-metrics">{project.metrics}</p>}
+  <div class="card-links">
+    <a href={project.href} target="_blank" rel="noreferrer">Open repository</a>
+  </div>
+</article>

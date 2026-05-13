@@ -1,0 +1,29 @@
+---
+type Publication = {
+  title: string;
+  year: string;
+  type: string;
+  citation: string;
+  authorPosition: string;
+  awardLabel: string;
+  officialUrl: string;
+  posterUrl: string;
+};
+
+const { publication } = Astro.props as { publication: Publication };
+---
+
+<article class="publication-teaser-card">
+  <div class="publication-pill-row">
+    <span class="pill">{publication.type}</span>
+    <span class="pill">{publication.year}</span>
+    {publication.awardLabel && <span class="pill pill-highlight">{publication.awardLabel}</span>}
+  </div>
+  <h3>{publication.title}</h3>
+  <p class="publication-citation">{publication.citation}</p>
+  <p class="publication-note">{publication.authorPosition}</p>
+  <div class="card-links">
+    <a href={publication.officialUrl} target="_blank" rel="noreferrer">Official record</a>
+    {publication.posterUrl && <a href={publication.posterUrl} target="_blank" rel="noreferrer">Poster PDF</a>}
+  </div>
+</article>

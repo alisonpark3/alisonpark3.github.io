@@ -943,8 +943,22 @@ main {
 }
 
 .publication-card,
-.project-card {
+.project-card,
+.publication-teaser-card,
+.project-teaser-card {
   padding: 28px;
+}
+
+.publication-teaser-card,
+.project-teaser-card {
+  border-radius: var(--radius-lg);
+  background: rgba(251, 250, 247, 0.84);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+
+.teaser-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .publication-pill-row {
