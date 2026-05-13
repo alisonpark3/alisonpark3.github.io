@@ -278,6 +278,12 @@ function proofStatus(official?: TrackerRow) {
   };
 }
 
+function liveUrl(value?: string) {
+  if (!value) return "";
+  if (value.includes("annual-meeting-history/past-meetings")) return "";
+  return value;
+}
+
 function nameVariantNote(variant: string) {
   if (!variant || variant === "Alison Seongjee Park") return "";
   if (variant === "Seongjee Park" || variant === "S Park") {
@@ -331,8 +337,8 @@ const publications: Publication[] = outputs
       doiUrl: official?.doi_url || (output.doi ? `https://doi.org/${output.doi}` : ""),
       conferenceName: official?.conference_name || "",
       conferenceSession: official?.conference_session || output.conference_session || "",
-      conferenceProgramUrl: official?.conference_program_url || "",
-      conferenceOfficialUrl: official?.conference_official_url || "",
+      conferenceProgramUrl: liveUrl(official?.conference_program_url),
+      conferenceOfficialUrl: liveUrl(official?.conference_official_url),
       localProofStatus: proof.label,
       proofNote: proof.note,
       metricSummary: metricSentence(output.output_id),
