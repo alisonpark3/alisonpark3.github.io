@@ -2,6 +2,7 @@
 type Project = {
   title: string;
   href: string;
+  focus: string;
   language: string;
   createdDate: string;
   summary: string;
@@ -14,12 +15,12 @@ type Project = {
 
 const { project } = Astro.props as { project: Project };
 const evidenceLine = project.metrics || project.framing || project.whatItShows;
-const metaLine = [project.createdDate, project.language].filter(Boolean).join(" · ");
+const metaLine = [project.originality, project.createdDate, project.language].filter(Boolean).join(" · ");
 ---
 
 <article class="project-card">
   <div class="publication-meta-row">
-    <span class="pill">{project.originality}</span>
+    <span class="pill">{project.focus}</span>
     {metaLine && <span class="meta-kicker">{metaLine}</span>}
   </div>
   <h3>{project.title}</h3>
