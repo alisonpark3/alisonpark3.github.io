@@ -511,19 +511,22 @@ const proofStrip = [
 
 const rolePanels = [
   {
-    title: "1. Cancer-biology foundation",
+    title: "1. Bench biology and translational assays",
     body:
-      "Built a cancer-biology foundation through wet-lab and translational assay work, especially SETD8-focused multiple-myeloma research that later matured into a peer-reviewed inhibitor publication."
+      "The first phase of the record is experimental oncology: assay-heavy work in multiple myeloma and mantle-cell lymphoma that fed into the 2018 selinexor-resistance abstract and later the published SETD8 inhibitor program.",
+    metrics: ["2018 Blood / ASH abstract", "2026 JMC inhibitor paper", "SETD8 IC50 0.14 +/- 0.04 uM"]
   },
   {
     title: "2. Patient-scale computational modeling",
     body:
-      "Transitioned that disease context into computational biology by integrating WES, single-cell RNA-seq, CyTOF, TCR-seq, and clinical data to build patient networks and multi-omic models of myeloma heterogeneity."
+      "That bench context carried into computational oncology, where Alison integrated WES, RNA-seq, CyTOF, TCR-seq, and clinical variables to stratify myeloma patients, map immune-state changes, and connect cohort structure to outcome.",
+    metrics: ["389 NDMM patients", "776,859 companion cells", "72 patients / 567,340 cells"]
   },
   {
-    title: "3. AI pipeline development",
+    title: "3. AI workflow development",
     body:
-      ""
+      "The current direction extends that same disease-focused work into machine-learning and LLM-assisted analysis workflows, using public code and genomic-analysis projects to stay grounded in real biomedical questions rather than generic AI demos.",
+    metrics: ["3 public ML repositories", "Healthcare + imaging use cases"]
   }
 ];
 
@@ -594,12 +597,21 @@ const focusMap = [
   },
   {
     id: "ml-llm",
-    label: "AI pipeline development",
-    title: "AI pipeline development",
-    body: "",
-    evidence: "",
-    skills: [],
-    links: []
+    label: "AI workflow development",
+    title: "Machine learning and LLM-assisted analysis",
+    body: "This is the newest public layer of the profile: using the same biomedical context to build machine-learning, notebook, and LLM-assisted analysis workflows instead of treating AI as a separate branding exercise.",
+    evidence: "3 public repositories across readmission, chest X-ray, and flu-vaccine modeling",
+    skills: ["Python", "scikit-learn", "notebook workflows", "medical-imaging modeling"],
+    links: [
+      {
+        label: "Projects page",
+        href: "/projects"
+      },
+      {
+        label: "GitHub profile",
+        href: CONTACT.github
+      }
+    ]
   }
 ];
 

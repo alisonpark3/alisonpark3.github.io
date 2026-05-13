@@ -140,8 +140,8 @@ function outputLinkLabel(link: { year: string; type: string; venue: string; conf
     <div class="content-grid">
       <SectionHeading
         eyebrow="Research focus"
-        title="From cancer biology to computational oncology, machine learning, and LLM-assisted analysis"
-        body="The storyline starts with cancer-biology mechanisms, moves into patient-scale multi-omics and single-cell immune profiling, then returns to translational validation through SETD8 inhibitor evidence. Each focus area below is tied to a specific public output so the cohort sizes, cell counts, and effect estimates stay source-specific."
+        title="From bench cancer biology to patient-scale cancer data and AI workflows"
+        body="The throughline here is concrete: Alison started in wet-lab cancer biology, learned how tumor response and drug effects are measured, then moved into multi-omics and single-cell modeling across real patient cohorts. That same disease context now carries into machine-learning and LLM-assisted analysis, so the AI layer stays tied to real cancer questions rather than generic demos."
       />
 
       <div class="split-grid">
@@ -149,6 +149,11 @@ function outputLinkLabel(link: { year: string; type: string; venue: string; conf
           <article class="split-card">
             <h3>{item.title}</h3>
             {item.body && <p>{item.body}</p>}
+            {item.metrics?.length > 0 && (
+              <div class="tag-row split-card-metrics">
+                {item.metrics.map((metric) => <span class="tag">{metric}</span>)}
+              </div>
+            )}
           </article>
         ))}
       </div>
