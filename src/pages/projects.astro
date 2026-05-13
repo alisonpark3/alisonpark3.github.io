@@ -1,7 +1,6 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
-import SectionHeading from "../components/SectionHeading.astro";
 import { projects, siteMeta } from "../data/site";
 ---
 
@@ -11,8 +10,8 @@ import { projects, siteMeta } from "../data/site";
       <p class="hero-kicker">Public code</p>
       <h1>Selected ML projects</h1>
       <p class="hero-body">
-        These selected public projects complement Alison&apos;s research record by showing applied machine-learning and health-data analysis work in code, without
-        claiming they are the center of the profile.
+        A few public repositories from my data-science training and early ML work. I keep them here so recruiters can see how I approach healthcare datasets,
+        model evaluation, and code outside of publications.
       </p>
       <div class="subpage-meta">
         <span class="pill">Healthcare classification</span>
@@ -24,28 +23,6 @@ import { projects, siteMeta } from "../data/site";
 
   <section class="section-shell">
     <div class="content-grid">
-      <SectionHeading
-        eyebrow="What these repos add"
-        title="Public code alongside the research record"
-        body="The publications page shows scientific output. This page adds visible code artifacts that help recruiters and collaborators understand the applied machine-learning layer of the profile."
-      />
-
-      <div class="split-grid">
-        <article class="split-card">
-          <h3>Why keep them here</h3>
-          <p>
-            Recruiters and hiring managers often want to see public code alongside research output. These repositories provide that layer while keeping the
-            publication record at the center of the portfolio.
-          </p>
-        </article>
-        <article class="split-card">
-          <h3>What they signal</h3>
-          <p>
-            They show healthcare framing, model-evaluation habits, and willingness to work in public across different machine-learning problem types.
-          </p>
-        </article>
-      </div>
-
       <div class="card-grid">
         {projects.map((project) => <ProjectCard project={project} />)}
       </div>
