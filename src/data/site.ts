@@ -353,27 +353,29 @@ const publications: Publication[] = outputs
 
 const publicationById = new Map(publications.map((publication) => [publication.id, publication]));
 
-const projectCopy: Record<string, { summary: string; framing: string; whatItShows: string }> = {
+const projectCopy: Record<string, { summary: string; framing: string; whatItShows: string; metrics?: string }> = {
   proj_diabetic_hospital_readmission: {
     summary:
       "A healthcare classification project focused on predicting diabetic-patient readmission and comparing model performance over a large hospital dataset.",
     framing:
-      "This repository shows practical tabular modeling work in a healthcare setting, with clear attention to feature engineering, model comparison, and evaluation.",
+      "Practical tabular modeling in a healthcare setting, with clear attention to feature engineering, model comparison, and evaluation.",
     whatItShows: "Healthcare tabular modeling, evaluation metrics, and decision-focused framing."
   },
   proj_pneumonia_xray_recognition: {
     summary:
       "A deep-learning project for pediatric pneumonia detection from chest X-rays, built in Python around a clinically relevant imaging problem.",
     framing:
-      "The repo shows hands-on work with CNN training workflows, image classification, and medical-imaging framing in a public codebase.",
-    whatItShows: "CNN experimentation, notebook-driven iteration, and medical-imaging context."
+      "Hands-on CNN training, image classification, and medical-imaging framing in a public notebook workflow.",
+    whatItShows: "CNN experimentation, notebook-driven iteration, and medical-imaging context.",
+    metrics: "About 6,000 pediatric chest X-rays; conclusion reports 99.7% recall and 99% accuracy."
   },
   proj_flu_vaccine_p3: {
     summary:
       "A public data-science repository centered on flu-vaccine modeling and health-focused predictive analysis.",
     framing:
-      "Together with the other repositories, it adds breadth to the public code record across health-focused machine-learning problems.",
-    whatItShows: "Modeling breadth, feature work, and health-focused predictive analysis."
+      "Built from the 2009 H1N1 Flu Survey to model seasonal flu-vaccine uptake using demographics, health behaviors, and vaccine-belief features.",
+    whatItShows: "Random forest modeling, feature interpretation, and health-focused predictive analysis.",
+    metrics: "26,707 survey responses and 35 features; final random forest precision 0.7898; doctor's recommendation split was 73.8% vaccinated vs 34.6% without."
   }
 };
 
@@ -387,7 +389,7 @@ const projects = (tables.projects || [])
     summary: projectCopy[project.project_id]?.summary || "",
     framing: projectCopy[project.project_id]?.framing || "",
     whatItShows: projectCopy[project.project_id]?.whatItShows || "",
-    metrics: project.quantitative_claims,
+    metrics: projectCopy[project.project_id]?.metrics || project.quantitative_claims,
     originality:
       project.originality_status === "public_fork_with_adaptation"
         ? "Adapted / forked training project"
