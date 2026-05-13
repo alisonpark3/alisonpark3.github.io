@@ -488,49 +488,49 @@ const journeyMilestones = timeline
 
 const proofStrip = [
   {
-    label: "Public research record",
-    value: "8 public outputs",
-    note: "1 Journal of Medicinal Chemistry article and 7 conference abstracts tracked across Blood and CLML / IMS."
+    label: "Publication trail",
+    value: "1 paper + 7 abstracts",
+    note: "Current public record across Journal of Medicinal Chemistry, Blood, and CLML / IMS."
   },
   {
-    label: "Multi-omics cohort",
-    value: "389 NDMM patients",
-    note: "The CLML / IMS subtype study integrates WES, RNA-seq, clinical data, and CyTOF immune profiling."
+    label: "Subtype study",
+    value: "389 newly diagnosed patients",
+    note: "Integrated WES, RNA-seq, CyTOF, and clinical data in multiple myeloma."
   },
   {
-    label: "Single-cell scale",
-    value: "776,859 cells",
-    note: "The largest listed single-cell companion analysis; the APC study separately reports 72 patients and 567,340 cells."
+    label: "Immune profiling scale",
+    value: "185 samples / 776,859 cells",
+    note: "The paired APC-focused abstract reports 72 patients and 567,340 cells."
   },
   {
     label: "ASH recognition",
-    value: "2 award-marked abstracts",
-    note: "The CV marks both 2024 Blood abstracts as ASH Abstract Achievement Award work."
+    value: "2 award abstracts",
+    note: "Both 2024 Blood abstracts are marked as Abstract Achievement Award work in the CV."
   },
   {
-    label: "SETD8 inhibitor signal",
+    label: "SETD8 result",
     value: "0.14 +/- 0.04 uM",
-    note: "Published MS2928 SETD8 biochemical potency, paired with selectivity testing across 20 methyltransferases."
+    note: "Biochemical IC50 reported for MS2928 in the 2026 inhibitor paper."
   }
 ];
 
 const rolePanels = [
   {
-    title: "1. Bench biology and translational assays",
+    title: "1. Bench biology",
     body:
-      "The first phase of the record is experimental oncology: assay-heavy work in multiple myeloma and mantle-cell lymphoma that fed into the 2018 selinexor-resistance abstract and later the published SETD8 inhibitor program.",
+      "I started in assay-heavy multiple-myeloma and mantle-cell lymphoma work, which later connected to the 2018 selinexor-resistance abstract and the published SETD8 inhibitor program.",
     metrics: ["2018 Blood / ASH abstract", "2026 JMC inhibitor paper", "SETD8 IC50 0.14 +/- 0.04 uM"]
   },
   {
-    title: "2. Patient-scale computational modeling",
+    title: "2. Cohort-scale modeling",
     body:
-      "That bench context carried into computational oncology, where Alison integrated WES, RNA-seq, CyTOF, TCR-seq, and clinical variables to stratify myeloma patients, map immune-state changes, and connect cohort structure to outcome.",
+      "That background shaped how I approached computational oncology: integrating WES, RNA-seq, CyTOF, TCR-seq, and clinical variables to study myeloma subtypes, immune states, and outcome.",
     metrics: ["389 NDMM patients", "776,859 companion cells", "72 patients / 567,340 cells"]
   },
   {
-    title: "3. AI workflow development",
+    title: "3. ML and AI workflows",
     body:
-      "The current direction extends that same disease-focused work into machine-learning and LLM-assisted analysis workflows, using public code and genomic-analysis projects to stay grounded in real biomedical questions rather than generic AI demos.",
+      "More recently, I've been extending that work into machine-learning and LLM-assisted analysis workflows that stay grounded in healthcare and biomedical data.",
     metrics: ["3 public ML repositories", "Healthcare + imaging use cases"]
   }
 ];
@@ -886,9 +886,9 @@ export const siteMeta = {
   lead: "Machine learning, generative AI, and cancer-data analysis",
   subhead: "Machine-learning scientist working across computational oncology, multi-omics, single-cell genomics, GPU-accelerated genomic pipelines, and LLM-assisted analysis.",
   heroSummary:
-    "Alison Seongjee Park is a bioinformatician and machine-learning scientist at Mount Sinai working in computational oncology. Her current work centers on multiple myeloma, multi-omics integration, single-cell analysis, and AI-assisted genomic workflows built around real biomedical datasets.",
+    "I work in computational oncology at Mount Sinai, with a focus on multiple myeloma, multi-omics integration, single-cell analysis, and AI-assisted genomic workflows built around real biomedical datasets.",
   roleTargetLine:
-    "Open to research and industry roles where machine learning, accelerated computing, and LLM-enabled genomic workflows can shape precision medicine, drug discovery, or clinically grounded biomedical software.",
+    "I'm interested in research and industry roles where machine learning, accelerated computing, and LLM-enabled genomic workflows can support precision medicine, drug discovery, or clinically grounded biomedical software.",
   location: CONTACT.location,
   currentRole: "Bioinformatician at Icahn School of Medicine at Mount Sinai",
   headshot: "/images/alison-park-chatgpt.png",

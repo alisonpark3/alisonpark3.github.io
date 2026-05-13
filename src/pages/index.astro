@@ -3,14 +3,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import PublicationTeaserCard from "../components/PublicationTeaserCard.astro";
 import ProjectTeaserCard from "../components/ProjectTeaserCard.astro";
-import SocialIcon from "../components/SocialIcon.astro";
 import { homepageData, siteMeta } from "../data/site";
-
-const socialLinks = [
-  { label: "LinkedIn", href: siteMeta.links.linkedin, icon: "linkedin" as const },
-  { label: "GitHub", href: siteMeta.links.github, icon: "github" as const },
-  { label: "Google Scholar", href: siteMeta.links.scholar, icon: "scholar" as const }
-];
 
 const storyVisuals = {
   "story-setd8": {
@@ -89,21 +82,9 @@ function outputLinkLabel(link: { year: string; type: string; venue: string; conf
         </div>
 
         <div class="hero-actions">
-          <a class="button button-primary" href={`mailto:${siteMeta.email}`}>Email Alison</a>
-          <a class="button button-secondary" href={siteMeta.downloads.resumePdf} download>Download Resume</a>
-          <a class="button button-tertiary" href="/publications">Publications</a>
-          <a class="button button-tertiary" href="/resume">Resume page</a>
-        </div>
-
-        <div class="hero-contact-line">
-          <a href={`tel:${siteMeta.phone.replace(/[^0-9+]/g, "")}`}>{siteMeta.phone}</a>
-          <span>•</span>
-          {socialLinks.map((item) => (
-            <a class="social-link" href={item.href} target="_blank" rel="noreferrer">
-              <SocialIcon name={item.icon} />
-              <span>{item.label}</span>
-            </a>
-          ))}
+          <a class="button button-primary" href={`mailto:${siteMeta.email}`}>Email me</a>
+          <a class="button button-secondary" href={siteMeta.downloads.resumePdf} download>Resume PDF</a>
+          <a class="button button-tertiary" href="/publications">Publication archive</a>
         </div>
       </div>
 
@@ -140,8 +121,8 @@ function outputLinkLabel(link: { year: string; type: string; venue: string; conf
     <div class="content-grid">
       <SectionHeading
         eyebrow="Research focus"
-        title="From bench cancer biology to patient-scale cancer data and AI workflows"
-        body="The throughline here is concrete: Alison started in wet-lab cancer biology, learned how tumor response and drug effects are measured, then moved into multi-omics and single-cell modeling across real patient cohorts. That same disease context now carries into machine-learning and LLM-assisted analysis, so the AI layer stays tied to real cancer questions rather than generic demos."
+        title="How the work has evolved"
+        body="I started in wet-lab cancer biology, where I learned how tumor response and drug effects are measured experimentally. That foundation carried into multi-omics and single-cell analysis across real patient cohorts, and now into machine-learning and LLM-assisted workflows that stay tied to cancer biology rather than generic AI demos."
       />
 
       <div class="split-grid">
