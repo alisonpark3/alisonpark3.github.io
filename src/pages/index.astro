@@ -122,7 +122,7 @@ function outputLinkLabel(link: { year: string; type: string; venue: string; conf
       <SectionHeading
         eyebrow="Research focus"
         title="How the work has evolved"
-        body="I started in wet-lab cancer biology, where I learned how tumor response and drug effects are measured experimentally. That foundation carried into multi-omics and single-cell analysis across real patient cohorts, and now into machine-learning and LLM-assisted workflows that stay tied to cancer biology rather than generic AI demos."
+        body="I started in wet-lab cancer biology, where I learned how tumor response and drug effects are measured. That foundation carried into multi-omics and single-cell analysis in patient cohorts, and now into ML and LLM-assisted workflows for cancer-data analysis."
       />
 
       <div class="split-grid">
@@ -153,7 +153,7 @@ function outputLinkLabel(link: { year: string; type: string; venue: string; conf
           {homepageData.focusMap.map((item, index) => (
             <article class:list={["focus-map-panel", item.links.length === 0 && "is-reserved"]} data-focus-panel={item.id} hidden={index !== 0}>
               <div class="focus-map-copy">
-                <p class="meta-kicker">Focus vertical</p>
+                <p class="meta-kicker">Focus area</p>
                 <h3>{item.title}</h3>
                 {item.body && <p>{item.body}</p>}
                 {item.evidence && (
@@ -329,8 +329,8 @@ function outputLinkLabel(link: { year: string; type: string; venue: string; conf
     <div class="content-grid">
       <SectionHeading
         eyebrow="Experience timeline"
-        title="Recent to earlier milestones"
-        body="This runs in reverse chronological order so a recruiter or collaborator sees the current work first, then the research path that led into it."
+        title="How the roles built on each other"
+        body="From early cancer-biology internships to current multiple-myeloma analysis at Mount Sinai, each stage added something different: bench training, ownership, clinical perspective, computational depth, and eventually published work."
       />
 
       <div class="timeline-shell">
@@ -356,7 +356,7 @@ function outputLinkLabel(link: { year: string; type: string; venue: string; conf
       </div>
 
       <div class="section-actions">
-        <a class="button button-secondary" href="/resume">See the recruiter-ready resume page</a>
+        <a class="button button-secondary" href="/resume">See the full resume</a>
       </div>
     </div>
   </section>

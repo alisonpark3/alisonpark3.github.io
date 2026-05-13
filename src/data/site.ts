@@ -413,20 +413,83 @@ const timelineCopy: Record<
     fullDateLabel: string;
   }>
 > = {
+  evt_2015_feinstein_internship: {
+    title: "Research Intern",
+    role: "Summer cancer-biology internship",
+    fullDateLabel: "Summer 2015",
+    summary:
+      "My first research role was a summer internship in chronic lymphocytic leukemia, where I started learning what day-to-day cancer-biology work actually looks like at the bench.",
+    detail:
+      "The work centered on cell culture, Western blotting, and flow cytometry, and it gave me the first real feel for how experimental cancer questions become data."
+  },
+  evt_2017_bs_start: {
+    title: "Biomedical sciences training",
+    role: "Sophie Davis / CCNY",
+    fullDateLabel: "August 2017 to May 2021",
+    summary:
+      "I studied biomedical sciences at Sophie Davis / CCNY while continuing to build research experience alongside the degree.",
+    detail:
+      "The degree was completed Cum Laude, which is the honor supported by the official CCNY commencement record."
+  },
   evt_2017_mount_sinai_trainee: {
     title: "Volunteer Research Trainee",
     role: "Cancer Epigenetics Laboratory",
     fullDateLabel: "September 2017 to July 2018",
     summary:
-      "Learned how a translational oncology project moves from question to evidence by supporting Donna Edwards, PhD, on the SOX11 mantle-cell lymphoma program.",
+      "At Mount Sinai, I learned how a hematologic-malignancy project moves from a biological question to an interpretable result by supporting the SOX11 mantle-cell lymphoma program.",
     detail:
-      "Built the bench foundation through compound screening, cell culture, flow cytometry, PCR/qPCR, Western blotting, lentiviral transduction, mouse breeding and lymph-node/spleen harvests, while observing ChIP-seq workflows, scientific writing, and Samir Parekh's clinical view of diagnosis and disease monitoring."
+      "This was the phase where the bench foundation really formed: compound screening, cell culture, flow cytometry, PCR/qPCR, Western blotting, lentiviral transduction, mouse work, and early exposure to scientific writing and clinical interpretation."
   },
   evt_2018_mount_sinai_ra: {
     summary:
-      "Promoted from volunteer to research assistant, took ownership of a SETD8 drug-discovery project, and continued contributing to E2F1/selinexor and SOX11 work.",
+      "I moved from trainee to research assistant, took ownership of the SETD8 line of work, and kept contributing to E2F1/selinexor and SOX11 projects in parallel.",
     detail:
-      "Built the program step by step: E2F1/selinexor work led to an ASH abstract; SETD8 work began with a Mount Sinai collaborator's compound, then moved through myeloma cell-line efficacy and toxicity screens, flow and cell-culture assays, qPCR/Western blot validation, cell-separation assays, CRISPR knockout studies for SOX11/SETD8, xenograft testing in immunocompromised mice versus saline placebo, and IHC/imaging review with pathologists. The SETD8 program later matured into the 2026 Journal of Medicinal Chemistry inhibitor paper."
+      "That period was where the work became more independent: E2F1/selinexor led to an ASH abstract, and the SETD8 program moved through screening, validation, CRISPR work, xenograft studies, and pathology review before eventually becoming the 2026 Journal of Medicinal Chemistry paper."
+  },
+  evt_2021_md_candidate: {
+    title: "Medical training period",
+    role: "CUNY School of Medicine",
+    fullDateLabel: "August 2021 to January 2023",
+    summary:
+      "Medical training widened the clinical frame around the science and added another layer to how I thought about disease, patients, and therapeutic relevance.",
+    detail:
+      "The CV documents this as an MD-candidate period rather than a completed MD, so the site keeps that description precise."
+  },
+  evt_2023_flatiron: {
+    title: "Data science bootcamp",
+    role: "Flatiron School",
+    fullDateLabel: "February 2023 to June 2023",
+    summary:
+      "Flatiron was the structured pivot into data science and machine learning after years of biology-heavy training.",
+    detail:
+      "That stretch added formal Python and modeling repetition through 525 hours of coursework and more than five project-based assignments."
+  },
+  evt_2023_bioinformatician: {
+    title: "Bioinformatician",
+    role: "Multiple Myeloma Computational Research",
+    fullDateLabel: "December 2023 to Present",
+    summary:
+      "I came back to Mount Sinai on the computational side, working on multiple myeloma through bulk RNA-seq, single-cell data, and clinical integration.",
+    detail:
+      "This is where the bench background and the computational pivot fully meet: subtype discovery, immune-state analysis, and machine-learning-adjacent workflows built around real patient cohorts."
+  },
+  evt_2024_ash_double_award: {
+    title: "ASH Abstract Achievement Awards",
+    role: "Two award-recognized abstracts",
+    fullDateLabel: "December 2024",
+    summary:
+      "Two Blood abstracts from the 2024 ASH meeting were recognized with Abstract Achievement Awards, which gave the immune-profiling work real visibility.",
+    detail:
+      "Both award-marked abstracts sit inside the current multiple-myeloma analysis track rather than as stand-alone accomplishments."
+  },
+  evt_2026_jmc_publish: {
+    title: "SETD8 paper published",
+    role: "Journal of Medicinal Chemistry",
+    fullDateLabel: "February 2026",
+    summary:
+      "The earlier SETD8 bench program matured into a peer-reviewed Journal of Medicinal Chemistry paper on inhibitor discovery and validation.",
+    detail:
+      "That publication closes a long arc in the timeline: target biology, compound work, selectivity, and in vivo evidence all showing up in one final output."
   }
 };
 
@@ -467,15 +530,15 @@ const journeyMilestoneIds = new Set([
 ]);
 
 const timelineMetricMap: Record<string, string[]> = {
-  evt_2026_jmc_publish: ["0.14 +/- 0.04 uM lead potency", "20 methyltransferases tested", "JMC publication"],
-  evt_2024_ash_double_award: ["2 award-marked Blood abstracts", "2024 ASH meeting"],
-  evt_2023_bioinformatician: ["389-patient cohort", "776,859-cell companion dataset", "Mount Sinai current role"],
+  evt_2026_jmc_publish: ["JMC paper", "0.14 +/- 0.04 uM potency"],
+  evt_2024_ash_double_award: ["2 award abstracts"],
+  evt_2023_bioinformatician: ["389-patient cohort", "185 samples / 776,859 cells", "current role"],
   evt_2023_flatiron: ["525 hours", "5+ data-science projects"],
-  evt_2021_md_candidate: ["2021 to 2023 medical training"],
-  evt_2018_mount_sinai_ra: ["E2F1/selinexor ASH abstract", "SETD8 inhibitor program", "xenograft + IHC validation"],
-  evt_2017_mount_sinai_trainee: ["SOX11 project training", "flow/qPCR/Western blot", "clinical shadowing"],
+  evt_2021_md_candidate: ["medical training"],
+  evt_2018_mount_sinai_ra: ["SETD8 program", "xenograft validation"],
+  evt_2017_mount_sinai_trainee: ["SOX11 project", "clinical shadowing"],
   evt_2017_bs_start: ["Cum Laude"],
-  evt_2015_feinstein_internship: ["Summer internship"]
+  evt_2015_feinstein_internship: ["first cancer lab role"]
 };
 
 const journeyMilestones = timeline
@@ -490,17 +553,17 @@ const proofStrip = [
   {
     label: "Publication trail",
     value: "1 paper + 7 abstracts",
-    note: "Current public record across Journal of Medicinal Chemistry, Blood, and CLML / IMS."
+    note: "Public outputs to date span Journal of Medicinal Chemistry, Blood, and CLML / IMS."
   },
   {
     label: "Subtype study",
     value: "389 newly diagnosed patients",
-    note: "Integrated WES, RNA-seq, CyTOF, and clinical data in multiple myeloma."
+    note: "Integrated WES, RNA-seq, CyTOF, and clinical data to define six myeloma clusters."
   },
   {
     label: "Immune profiling scale",
     value: "185 samples / 776,859 cells",
-    note: "The paired APC-focused abstract reports 72 patients and 567,340 cells."
+    note: "Companion abstracts cover both the 185-sample cohort and a 72-patient APC-focused subset."
   },
   {
     label: "ASH recognition",
@@ -540,7 +603,7 @@ const focusMap = [
     id: "multiomics",
     label: "Multi-omics modeling",
     title: "Subtype discovery from integrated cohorts",
-    body: "This line of work combines WES, RNA-seq, CyTOF, and network integration to refine multiple-myeloma structure beyond standard staging labels.",
+    body: "Integrates WES, RNA-seq, CyTOF, and network methods to define myeloma subtypes beyond standard staging.",
     evidence: "389 patients, 6 clusters, HR 4.46 vs Cluster 6",
     skills: ["SNF", "spectral clustering", "cohort integration", "survival analysis"],
     links: [
@@ -554,7 +617,7 @@ const focusMap = [
     id: "singlecell",
     label: "Single-cell immune profiling",
     title: "Cell-state changes in high-risk disease",
-    body: "This vertical maps how aggressive disease changes antigen presentation, IFN-stimulated T-cell states, and immune composition at cellular resolution.",
+    body: "Examines how aggressive disease shifts antigen presentation, IFN-stimulated T-cell states, and immune composition at single-cell resolution.",
     evidence: "72 NDMM patients, 567,340 BM cells, 92 identified cell populations",
     skills: ["Scanpy", "Seurat", "InferCNV", "CellphoneDB", "pySCENIC"],
     links: [
@@ -572,7 +635,7 @@ const focusMap = [
     id: "sharedimmune",
     label: "Cross-model comparison",
     title: "Shared immune features across patient and murine systems",
-    body: "This work extends the single-cell story by asking which immune and clonal signals remain consistent across human subtypes and murine models.",
+    body: "Tests which immune and clonal signals persist across human subtypes and murine models.",
     evidence: "159 NDMM patients, 435,000 cells, HR 2.3 for single-clone fraction >=19%",
     skills: ["clone analysis", "single-cell integration", "survival association", "cross-model comparison"],
     links: [
@@ -586,7 +649,7 @@ const focusMap = [
     id: "therapeutics",
     label: "Translational therapeutics",
     title: "From epigenetic mechanism to inhibitor evidence",
-    body: "The SETD8 program ties disease relevance, inhibitor design, selectivity, and in vivo evidence together in one translational thread.",
+    body: "Tracks SETD8 from disease rationale through inhibitor design, selectivity, and in vivo testing.",
     evidence: "SETD8 IC50 0.14 +/- 0.04 uM; selectivity tested across 20 methyltransferases",
     skills: ["compound evaluation", "crystallography", "mass spectrometry", "xenograft studies"],
     links: [
@@ -604,7 +667,7 @@ const focusMap = [
     id: "ml-llm",
     label: "AI workflow development",
     title: "Machine learning and LLM-assisted analysis",
-    body: "This is the newest public layer of the profile: using the same biomedical context to build machine-learning, notebook, and LLM-assisted analysis workflows instead of treating AI as a separate branding exercise.",
+    body: "Recent projects apply machine learning to readmission, chest X-ray, and flu-vaccine questions, alongside notebook-based LLM analysis support.",
     evidence: "3 public repositories across readmission, chest X-ray, and flu-vaccine modeling",
     skills: ["Python", "scikit-learn", "notebook workflows", "medical-imaging modeling"],
     links: [
