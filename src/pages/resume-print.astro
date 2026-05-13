@@ -165,6 +165,40 @@ const selectedPublications = [
       .skill-block + .skill-block {
         margin-top: 5px;
       }
+
+      @media screen and (max-width: 700px) {
+        body {
+          font-size: 10pt;
+        }
+
+        .resume-sheet {
+          padding: 16px;
+        }
+
+        .header-top,
+        .entry-head {
+          display: grid;
+          gap: 4px;
+        }
+
+        .name {
+          font-size: 20pt;
+          letter-spacing: -0.02em;
+        }
+
+        .headline {
+          font-size: 10pt;
+        }
+
+        .two-column {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+
+        .entry-date {
+          white-space: normal;
+        }
+      }
     </style>
   </head>
   <body>
