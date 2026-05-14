@@ -61,7 +61,7 @@ const trackerData = tracker as TrackerFile;
 const tables = trackerData.tables;
 const ALISON_ID = "person_alison_seongjee_park";
 const CONTACT = {
-  email: "alisonsjpark@gmail.com",
+  email: "alisonpark.sj@gmail.com",
   phone: "516-580-2246",
   location: "New York, NY",
   linkedin: "https://www.linkedin.com/in/alison-s-park/",
