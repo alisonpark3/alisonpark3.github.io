@@ -341,10 +341,10 @@ main {
 .portrait-frame {
   width: min(420px, 76vw);
   aspect-ratio: 1 / 1;
-  padding: 16px;
-  border-radius: 36px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(233, 239, 245, 0.92));
-  box-shadow: var(--shadow);
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .portrait-frame-tall {
@@ -356,7 +356,8 @@ main {
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  border-radius: 28px;
+  border-radius: 30px;
+  box-shadow: 0 22px 60px rgba(24, 35, 45, 0.1);
 }
 
 .portrait-note {
@@ -1253,15 +1254,16 @@ main {
 }
 
 .evidence-card {
-  padding: 20px;
-  border-radius: var(--radius-lg);
-  background: rgba(251, 250, 247, 0.84);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-soft);
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
 .evidence-card-copy {
   margin-top: 14px;
+  padding: 0 4px;
 }
 
 .figure-lightbox-trigger {
@@ -1338,8 +1340,8 @@ main {
   height: auto;
   display: block;
   border-radius: 20px;
-  border: 1px solid var(--line);
-  background: white;
+  border: 0;
+  background: transparent;
 }
 
 .figure-lightbox-caption {
@@ -1449,8 +1451,9 @@ main {
   height: auto;
   display: block;
   border-radius: 18px;
-  border: 1px solid var(--line);
-  background: white;
+  border: 0;
+  background: transparent;
+  box-shadow: 0 18px 42px rgba(24, 35, 45, 0.08);
 }
 
 .subpage-hero .narrow-grid {

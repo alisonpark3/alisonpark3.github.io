@@ -954,7 +954,7 @@ export const siteMeta = {
     "I'm interested in research and industry roles where machine learning, accelerated computing, and LLM-enabled genomic workflows can support precision medicine, drug discovery, or clinically grounded biomedical software.",
   location: CONTACT.location,
   currentRole: "Bioinformatician at Icahn School of Medicine at Mount Sinai",
-  headshot: "/images/alison-park-chatgpt.png",
+  headshot: "/images/alison-park-2026-05-14.png",
   email: CONTACT.email,
   phone: CONTACT.phone,
   downloads: DOWNLOADS,
