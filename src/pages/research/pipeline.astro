@@ -2,12 +2,12 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import FigureLightboxGrid from "../../components/FigureLightboxGrid.astro";
-import { mmradarPipelinePage, privateStagingMeta } from "../../data/private-staging";
+import { mmradarPipelinePage } from "../../data/private-staging";
 ---
 
 <MainLayout
   title="Clinical Genomics Pipeline | Integrated WES + RNA interpretation"
-  description="Private local staging page for the WES + RNA interpretation system used in multiple-myeloma precision-medicine reporting."
+  description="Integrated WES and RNA interpretation workflow for patient-level multiple myeloma profiling, reporting, and translational genomics."
 >
   <section class="subpage-hero">
     <div class="content-grid narrow-grid">
@@ -16,10 +16,6 @@ import { mmradarPipelinePage, privateStagingMeta } from "../../data/private-stag
       <p class="hero-body">{mmradarPipelinePage.hero.summary}</p>
       <div class="subpage-meta">
         {mmradarPipelinePage.statusPills.map((item) => <span class="pill">{item}</span>)}
-      </div>
-      <div class="private-stage-banner">
-        <strong>{privateStagingMeta.badge}</strong>
-        <span>{privateStagingMeta.note}</span>
       </div>
     </div>
   </section>
@@ -113,7 +109,7 @@ import { mmradarPipelinePage, privateStagingMeta } from "../../data/private-stag
   <section class="section-shell">
     <div class="content-grid">
       <SectionHeading
-        eyebrow="Operational appendix"
+        eyebrow="Workflow operations"
         title="Reproducibility and run structure"
         body="Execution details matter because this workflow is meant to run repeatedly, preserve traceability, and support report generation in a clinical-research setting."
       />

@@ -1,8 +1,3 @@
-export const privateStagingMeta = {
-  badge: "Private local staging",
-  note: "Built from internal IMS 2026 and MMRADAR materials. Review locally before anything is made public."
-};
-
 export const imsCurrentResearchPage = {
   hero: {
     kicker: "Current research",
@@ -10,7 +5,7 @@ export const imsCurrentResearchPage = {
     summary:
       "A daratumumab-aware reanalysis of longitudinal single-cell bone marrow data identifying relapse-associated biology that persists after confound adjustment and external validation."
   },
-  statusPills: ["14 completed analyses", "23 patients x 2 timepoints", "185-patient validation cohort", "Private local preview"],
+  statusPills: ["14 completed analyses", "23 patients x 2 timepoints", "185-patient validation cohort", "External validation included"],
   proofStrip: [
     {
       label: "Signal retained after confound adjustment",
@@ -23,7 +18,7 @@ export const imsCurrentResearchPage = {
       note: "Nominal findings that appear to be therapy-driven rather than relapse-associated."
     },
     {
-      label: "Strongest internal transcriptional signal",
+      label: "Strongest Dara-robust transcriptional signal",
       value: "1,632",
       note: "Robust DEGs in the CD4_Th_LEF1 TP1 state, with top genes surviving leave-one-out sensitivity checks."
     },
@@ -110,7 +105,7 @@ export const imsCurrentResearchPage = {
       src: "/images/private-staging/ims_2026/Fig2_volcano_CD4_Th_LEF1_TP1.png",
       alt: "Volcano plot for the CD4 T-helper LEF1 signal at TP1.",
       title: "CD4 T-helper rewiring",
-      caption: "The largest internal Dara-robust transcriptional signal, with 1,632 DEGs and leave-one-out stability in the key cross-classified patients."
+      caption: "The largest Dara-robust transcriptional signal, with 1,632 DEGs and leave-one-out stability in the key cross-classified patients."
     },
     {
       src: "/images/private-staging/ims_2026/Fig6_module_scores_3way_gradient.png",
@@ -140,7 +135,7 @@ export const mmradarPipelinePage = {
     summary:
       "A translational genomics platform that combines tumor-normal whole-exome sequencing and tumor RNA-seq into subgroup prediction, disease-hallmark interpretation, evidence lookup, and patient-level precision-medicine reporting."
   },
-  statusPills: ["Tumor-normal WES + tumor RNA", "Patient-level HTML reports", "137/137 tasks PASS", "Private local preview"],
+  statusPills: ["Tumor-normal WES + tumor RNA", "Patient-level HTML reports", "137/137 tasks PASS", "3 report modes"],
   proofStrip: [
     {
       label: "Input scope",
@@ -165,7 +160,7 @@ export const mmradarPipelinePage = {
     {
       label: "Operational scale",
       value: "~1,000 reports",
-      note: "User-confirmed operational scale for precision-medicine report generation; keep private until you want this public."
+      note: "Operationally used to generate precision-medicine reports at scale in multiple myeloma."
     }
   ],
   architectureLayers: [

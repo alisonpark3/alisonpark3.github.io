@@ -2,7 +2,7 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import { homepageData, siteMeta } from "../../data/site";
-import { imsCurrentResearchPage, mmradarPipelinePage, privateStagingMeta } from "../../data/private-staging";
+import { imsCurrentResearchPage, mmradarPipelinePage } from "../../data/private-staging";
 
 const currentWork = [
   {
@@ -35,10 +35,6 @@ const currentWork = [
         My work in multiple myeloma spans active translational research, the genomic systems that support patient-level interpretation,
         and a selected record of published studies.
       </p>
-      <div class="private-stage-banner">
-        <strong>{privateStagingMeta.badge}</strong>
-        <span>Current-work pages below remain local until you decide what becomes public.</span>
-      </div>
     </div>
   </section>
 

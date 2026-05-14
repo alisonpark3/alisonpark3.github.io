@@ -2,12 +2,12 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import FigureLightboxGrid from "../../components/FigureLightboxGrid.astro";
-import { imsCurrentResearchPage, privateStagingMeta } from "../../data/private-staging";
+import { imsCurrentResearchPage } from "../../data/private-staging";
 ---
 
 <MainLayout
   title="Current Research | Daratumumab-aware MRD reanalysis"
-  description="Private local staging page for the current multiple myeloma research program."
+  description="Daratumumab-aware reanalysis of longitudinal multiple myeloma single-cell data, focused on relapse-associated biology after confound adjustment and external validation."
 >
   <section class="subpage-hero">
     <div class="content-grid narrow-grid">
@@ -16,10 +16,6 @@ import { imsCurrentResearchPage, privateStagingMeta } from "../../data/private-s
       <p class="hero-body">{imsCurrentResearchPage.hero.summary}</p>
       <div class="subpage-meta">
         {imsCurrentResearchPage.statusPills.map((item) => <span class="pill">{item}</span>)}
-      </div>
-      <div class="private-stage-banner">
-        <strong>{privateStagingMeta.badge}</strong>
-        <span>{privateStagingMeta.note}</span>
       </div>
     </div>
   </section>
@@ -98,8 +94,8 @@ import { imsCurrentResearchPage, privateStagingMeta } from "../../data/private-s
     <div class="content-grid">
       <SectionHeading
         eyebrow="Representative results"
-        title="Key figures from the current analysis set"
-        body="These figures carry the strongest current signals: external survival validation, the CD4 T-helper transcriptional program, a healthy-baseline gradient, and the Dara-clean signaling landscape."
+        title="Representative figures from the reanalysis"
+        body="These figures highlight the strongest findings from the reanalysis: external survival validation, the CD4 T-helper transcriptional program, a healthy-baseline gradient, and the Dara-clean signaling landscape."
       />
 
       <FigureLightboxGrid figures={imsCurrentResearchPage.figureGallery} dialogLabel="Current research figures" />
