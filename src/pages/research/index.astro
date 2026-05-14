@@ -1,0 +1,160 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import { homepageData, siteMeta } from "../../data/site";
+import { imsCurrentResearchPage, mmradarPipelinePage, privateStagingMeta } from "../../data/private-staging";
+
+const currentWork = [
+  {
+    eyebrow: "Ongoing research",
+    title: imsCurrentResearchPage.hero.title,
+    body: "Longitudinal single-cell reanalysis focused on separating daratumumab treatment effects from relapse-associated biology in multiple myeloma.",
+    metrics: ["14 analyses", "23 patients x 2 timepoints", "185-patient validation cohort"],
+    href: "/research/current",
+    secondaryHref: "/publications",
+    secondaryLabel: "Related publications"
+  },
+  {
+    eyebrow: "Clinical genomics pipeline",
+    title: mmradarPipelinePage.hero.title,
+    body: "Integrated WES + RNA interpretation workflow used to generate patient-level precision-medicine reports for multiple myeloma.",
+    metrics: ["~80 processes", "137/137 tasks PASS", "patient HTML reports"],
+    href: "/research/pipeline",
+    secondaryHref: "/resume",
+    secondaryLabel: "Resume"
+  }
+];
+---
+
+<MainLayout title={`Research | ${siteMeta.title}`} description="Current work and selected studies across computational oncology, multi-omics, and clinical genomics.">
+  <section class="subpage-hero">
+    <div class="content-grid narrow-grid">
+      <p class="hero-kicker">Research</p>
+      <h1>Current work and selected studies</h1>
+      <p class="hero-body">
+        My work in multiple myeloma spans active translational research, the genomic systems that support patient-level interpretation,
+        and a selected record of published studies.
+      </p>
+      <div class="private-stage-banner">
+        <strong>{privateStagingMeta.badge}</strong>
+        <span>Current-work pages below remain local until you decide what becomes public.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof-section">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Current work"
+        title="Two active lines of work"
+        body="One line is a daratumumab-aware reanalysis program in multiple myeloma. The other is a patient-level WES + RNA interpretation system used to generate precision-medicine reports."
+      />
+
+      <div class="split-grid">
+        {currentWork.map((item) => (
+          <article class="split-card">
+            <p class="section-eyebrow">{item.eyebrow}</p>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+            <div class="tag-row split-card-metrics">
+              {item.metrics.map((metric) => <span class="tag">{metric}</span>)}
+            </div>
+            <div class="hero-actions">
+              <a class="button button-primary" href={item.href}>Open page</a>
+              <a class="button button-secondary" href={item.secondaryHref}>{item.secondaryLabel}</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Selected studies"
+        title="Published work, newest first"
+        body="These studies show the recent arc of the work. The full archive, poster PDFs, and official records stay on the publications page."
+      />
+
+      <div class="story-stack">
+        {homepageData.researchStories.map((story) => (
+          <article class="story-card">
+            <div class="story-copy">
+              <div class="story-meta-top">
+                <p class="section-eyebrow">{story.yearLabel}</p>
+                <span class="pill">Selected study</span>
+              </div>
+              <h3>{story.title}</h3>
+              <p class="story-summary">{story.summary}</p>
+              <div class="story-results">
+                <p>{story.results[0]}</p>
+              </div>
+              <div class="story-metrics">
+                {story.metrics.map((metric) => (
+                  <div class="story-metric">
+                    <span>{metric.label}</span>
+                    <strong>{metric.value}</strong>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="story-visual">
+              <div class="study-map-card">
+                <div>
+                  <p class="meta-kicker">Study record</p>
+                  <h3>{story.yearLabel}</h3>
+                </div>
+                <div class="figure-highlight-grid">
+                  {story.links.slice(0, 2).map((link) => (
+                    <a class="figure-highlight" href={link.officialUrl || "/publications"} target={link.officialUrl ? "_blank" : undefined} rel={link.officialUrl ? "noreferrer" : undefined}>
+                      <span>{link.type === "Journal article" ? "Paper" : link.conferenceName || "Abstract"}</span>
+                      <strong>{link.venue}</strong>
+                    </a>
+                  ))}
+                </div>
+                <div class="hero-actions">
+                  <a class="button button-secondary" href="/publications">Open archive</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell accent-shell">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Archive and code"
+        title="Where the rest of the record lives"
+        body="Publications holds the full formal record. Projects keeps the lighter public-code layer. Resume keeps the recruiter-facing summary."
+      />
+
+      <div class="split-grid">
+        <article class="split-card">
+          <h3>Publication archive</h3>
+          <p>Official records, author position, poster PDFs where available, and the full research record.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="/publications">Open publications</a>
+          </div>
+        </article>
+        <article class="split-card">
+          <h3>Projects and public code</h3>
+          <p>Notebook-scale ML projects and public repositories that sit alongside the research record.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="/projects">Open projects</a>
+          </div>
+        </article>
+        <article class="split-card">
+          <h3>Recruiter-facing resume</h3>
+          <p>Condensed role summary, contact details, and the hiring-facing version of the work.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="/resume">Open resume</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</MainLayout>

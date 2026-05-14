@@ -11,12 +11,21 @@ const { title, description = "Editorial portfolio for Alison Seongjee Park." } =
 const pathname = Astro.url.pathname;
 const nav = [
   { href: "/", label: "Overview" },
-  { href: "/#research", label: "Research" },
+  { href: "/research", label: "Research" },
   { href: "/publications", label: "Publications" },
   { href: "/projects", label: "Projects" },
   { href: "/resume", label: "Resume" },
   { href: "/#contact", label: "Contact" }
 ];
+
+function isActive(href: string) {
+  if (href === "/") return pathname === "/";
+  if (href === "/research") return pathname === "/research" || pathname.startsWith("/research/");
+  if (href === "/publications") return pathname === "/publications" || pathname.startsWith("/publications/");
+  if (href === "/projects") return pathname === "/projects" || pathname.startsWith("/projects/");
+  if (href === "/resume") return pathname === "/resume" || pathname.startsWith("/resume/");
+  return href === pathname;
+}
 ---
 
 <!doctype html>
@@ -38,7 +47,7 @@ const nav = [
           <nav class="site-nav" aria-label="Primary">
             {
               nav.map((item) => (
-                <a class:list={["nav-link", item.href === pathname && "is-active"]} href={item.href}>
+                <a class:list={["nav-link", isActive(item.href) && "is-active"]} href={item.href}>
                   {item.label}
                 </a>
               ))

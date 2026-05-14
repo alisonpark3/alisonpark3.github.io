@@ -1,0 +1,145 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import FigureLightboxGrid from "../../components/FigureLightboxGrid.astro";
+import { mmradarPipelinePage, privateStagingMeta } from "../../data/private-staging";
+---
+
+<MainLayout
+  title="Clinical Genomics Pipeline | Integrated WES + RNA interpretation"
+  description="Private local staging page for the WES + RNA interpretation system used in multiple-myeloma precision-medicine reporting."
+>
+  <section class="subpage-hero">
+    <div class="content-grid narrow-grid">
+      <p class="hero-kicker">{mmradarPipelinePage.hero.kicker}</p>
+      <h1>{mmradarPipelinePage.hero.title}</h1>
+      <p class="hero-body">{mmradarPipelinePage.hero.summary}</p>
+      <div class="subpage-meta">
+        {mmradarPipelinePage.statusPills.map((item) => <span class="pill">{item}</span>)}
+      </div>
+      <div class="private-stage-banner">
+        <strong>{privateStagingMeta.badge}</strong>
+        <span>{privateStagingMeta.note}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof-section">
+    <div class="content-grid">
+      <div class="section-heading proof-heading">
+        <p class="section-eyebrow">System overview</p>
+        <h2>Translational genomics from raw sequencing to patient-level interpretation</h2>
+        <p class="section-body">
+          The core idea is not just sequencing analysis. The platform integrates tumor-normal WES and tumor RNA-seq into one
+          interpretive system for subgroup prediction, hallmark scoring, evidence lookup, and patient-facing reporting.
+        </p>
+      </div>
+
+      <div class="proof-grid proof-grid-context">
+        {
+          mmradarPipelinePage.proofStrip.map((item) => (
+            <article class="proof-card">
+              <p class="proof-label">{item.label}</p>
+              <p class="proof-value">{item.value}</p>
+              <p class="proof-note">{item.note}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Workflow architecture"
+        title="From raw sequencing to report-ready evidence synthesis"
+        body="The research logic moves from sequencing inputs, to molecular evidence extraction, to multimodal interpretation, and finally to patient-specific outputs."
+      />
+
+      <div class="architecture-stage-stack">
+        {mmradarPipelinePage.architectureLayers.map((layer, index) => (
+          <article class="resume-panel architecture-layer">
+            <div class="architecture-layer-head">
+              <span class="architecture-step">{index + 1}</span>
+              <div>
+                <p class="meta-kicker">Layer {index + 1}</p>
+                <h3>{layer.title}</h3>
+              </div>
+            </div>
+            <div class="architecture-node-grid">
+              {layer.items.map((item) => <div class="architecture-node">{item}</div>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell accent-shell">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Research systems design"
+        title="Evidence extraction, integration, and reporting in one platform"
+        body="Molecular analysis, subgrouping, knowledgebase integration, and report generation remain part of the same workflow rather than being split across disconnected scripts."
+      />
+
+      <div class="split-grid">
+        {mmradarPipelinePage.engineeringPanels.map((item) => (
+          <article class="split-card">
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+            <div class="tag-row">
+              {item.methods.map((method) => <span class="tag">{method}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Figure set"
+        title="System views and methods maps"
+        body="The architecture view anchors the page, while the WES and RNA DAGs show how the two analysis branches feed the integrated interpretation layer."
+      />
+
+      <FigureLightboxGrid figures={mmradarPipelinePage.figureGallery} dialogLabel="Clinical genomics pipeline figures" />
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Operational appendix"
+        title="Reproducibility and run structure"
+        body="Execution details matter because this workflow is meant to run repeatedly, preserve traceability, and support report generation in a clinical-research setting."
+      />
+
+      <FigureLightboxGrid figures={mmradarPipelinePage.appendixFigures} dialogLabel="Clinical genomics pipeline appendix figures" />
+    </div>
+  </section>
+
+  <section class="section-shell">
+    <div class="content-grid">
+      <SectionHeading
+        eyebrow="Analytical and operational scope"
+        title="Interpretation, reporting, and reproducible execution"
+        body="This workflow combines patient-level interpretation, genomic systems design, and reproducible execution in a format that can support repeated clinical-research use."
+      />
+
+      <div class="capability-grid">
+        {mmradarPipelinePage.capabilities.map((group) => (
+          <article class="resume-card capability-card">
+            <h3>{group.title}</h3>
+            <ul class="calm-list">
+              {group.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</MainLayout>

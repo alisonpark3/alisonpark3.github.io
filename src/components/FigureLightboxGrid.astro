@@ -1,0 +1,95 @@
+---
+type FigureItem = {
+  src: string;
+  alt: string;
+  title: string;
+  caption: string;
+};
+
+type Props = {
+  figures: FigureItem[];
+  dialogLabel: string;
+};
+
+const { figures, dialogLabel } = Astro.props;
+---
+
+<div class="figure-lightbox-grid" data-figure-lightbox>
+  <div class="evidence-grid">
+    {figures.map((item, index) => (
+      <article class="evidence-card">
+        <button
+          class="figure-lightbox-trigger"
+          type="button"
+          data-figure-src={item.src}
+          data-figure-alt={item.alt}
+          data-figure-title={item.title}
+          data-figure-caption={item.caption}
+          aria-label={`Open figure: ${item.title}`}
+        >
+          <img class="staging-figure" src={item.src} alt={item.alt} loading="lazy" />
+          <span class="figure-open-chip">{`Open figure ${index + 1}`}</span>
+        </button>
+        <div class="evidence-card-copy">
+          <h3>{item.title}</h3>
+          <p>{item.caption}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <dialog class="figure-lightbox-dialog" aria-label={dialogLabel}>
+    <div class="figure-lightbox-shell">
+      <form method="dialog" class="figure-lightbox-close-wrap">
+        <button class="figure-lightbox-close" type="submit" aria-label="Close figure dialog">Close</button>
+      </form>
+      <figure class="figure-lightbox-figure">
+        <img class="figure-lightbox-image" alt="" />
+        <figcaption class="figure-lightbox-caption">
+          <strong class="figure-lightbox-title"></strong>
+          <span class="figure-lightbox-copy"></span>
+        </figcaption>
+      </figure>
+    </div>
+  </dialog>
+</div>
+
+<script>
+  const roots = document.querySelectorAll("[data-figure-lightbox]");
+
+  roots.forEach((root) => {
+    const dialog = root.querySelector(".figure-lightbox-dialog");
+    const image = root.querySelector(".figure-lightbox-image");
+    const title = root.querySelector(".figure-lightbox-title");
+    const copy = root.querySelector(".figure-lightbox-copy");
+    const triggers = root.querySelectorAll(".figure-lightbox-trigger");
+
+    if (!(dialog instanceof HTMLDialogElement) || !(image instanceof HTMLImageElement) || !title || !copy) return;
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const src = trigger.getAttribute("data-figure-src") || "";
+        const alt = trigger.getAttribute("data-figure-alt") || "";
+        const heading = trigger.getAttribute("data-figure-title") || "";
+        const caption = trigger.getAttribute("data-figure-caption") || "";
+
+        image.src = src;
+        image.alt = alt;
+        title.textContent = heading;
+        copy.textContent = caption;
+        dialog.showModal();
+      });
+    });
+
+    dialog.addEventListener("click", (event) => {
+      const bounds = dialog.getBoundingClientRect();
+      const clickedInDialog =
+        bounds.top <= event.clientY &&
+        event.clientY <= bounds.top + bounds.height &&
+        bounds.left <= event.clientX &&
+        event.clientX <= bounds.left + bounds.width;
+
+      if (!clickedInDialog) dialog.close();
+    });
+  });
+</script>
