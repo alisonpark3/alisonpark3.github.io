@@ -69,8 +69,7 @@ const CONTACT = {
   scholar: "https://scholar.google.com/citations?user=dVduBUMAAAAJ&hl=en"
 };
 const DOWNLOADS = {
-  resumePdf: "/files/Alison_Park_Resume.pdf",
-  cvDocx: "/files/Alison_Park_CV.docx"
+  resumePdf: "/files/Alison_Park_Resume.pdf"
 };
 
 const institutions = new Map((tables.institutions || []).map((row) => [row.institution_id, row]));
