@@ -70,7 +70,6 @@ const CONTACT = {
 };
 const DOWNLOADS = {
   resumePdf: "/files/Alison_Park_Resume.pdf",
-  cvPdf: "/files/Alison_Park_CV.pdf",
   cvDocx: "/files/Alison_Park_CV.docx"
 };
 
